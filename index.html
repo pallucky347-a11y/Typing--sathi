@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Sathi</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f0f5ff;margin:0;color:#172554}
+header{background:#2448a5;color:white;text-align:center;padding:24px 12px}
+main{max-width:700px;margin:20px auto;padding:16px}
+.card{background:white;padding:20px;border-radius:16px;box-shadow:0 3px 14px #ccd5e8}
+select,textarea,button{font:inherit;padding:12px;border-radius:8px;margin:7px 0;max-width:100%}
+select,textarea{width:100%;box-sizing:border-box;border:1px solid #b9c6df}
+textarea{height:150px}
+button{border:0;background:#2448a5;color:white;cursor:pointer}
+.stats{display:flex;gap:10px;justify-content:space-around;text-align:center;margin:15px 0}
+.stat{background:#e8efff;padding:12px;border-radius:10px;flex:1}
+footer{text-align:center;padding:20px;color:#52617c}
+</style>
+</head>
+<body>
+<header><h1>⌨️ Typing Sathi</h1><p>सीखें • अभ्यास करें • अपनी स्पीड बढ़ाएँ</p></header>
+<main><section class="card">
+<h2>अपनी टाइपिंग चुनें</h2>
+<select id="lang" onchange="changeText()"><option value="en">English Typing</option><option value="hi">Hindi Typing</option></select>
+<p id="lesson"></p>
+<label for="duration">टेस्ट का समय</label>
+<select id="duration"><option value="1">1 मिनट</option><option value="5">5 मिनट</option><option value="10">10 मिनट</option></select>
+<textarea id="typing" placeholder="यहाँ देखकर टाइप करना शुरू करें..." oninput="typeNow()"></textarea>
+<div class="stats"><div class="stat">समय<br><b id="time">60</b> sec</div><div class="stat">स्पीड<br><b id="speed">0</b> WPM</div><div class="stat">सही अक्षर<br><b id="accuracy">100</b>%</div></div>
+<button onclick="startTest()">नया टेस्ट शुरू करें</button>
+<button onclick="finishTest()">टेस्ट रोकें</button>
+<p id="result" aria-live="polite">टेस्ट शुरू करने के लिए बटन दबाएँ।</p>
+</section></main>
+<footer>Typing Sathi • मुफ्त टाइपिंग अभ्यास</footer>
+<script>
+const lessons={en:"The quick brown fox jumps over the lazy dog. Practice every day to improve your typing speed.",hi:"मेरा भारत महान है। मैं हर दिन टाइपिंग का अभ्यास करता हूँ और अपनी गति बढ़ाता हूँ।"};
+let seconds=60,started=false,ended=true,interval=null,startAt=0;
+function changeText(){document.getElementById('lesson').textContent=lessons[document.getElementById('lang').value];document.getElementById('typing').value='';document.getElementById('result').textContent='नया टेस्ट शुरू करें।';}
+function startTest(){clearInterval(interval);seconds=Number(document.getElementById('duration').value)*60;started=true;ended=false;startAt=Date.now();document.getElementById('typing').value='';document.getElementById('typing').disabled=false;document.getElementById('typing').focus();document.getElementById('time').textContent=seconds;document.getElementById('speed').textContent='0';document.getElementById('accuracy').textContent='100';document.getElementById('result').textContent='टेस्ट चल रहा है!';interval=setInterval(()=>{seconds=Math.max(0,Number(document.getElementById('duration').value)*60-Math.floor((Date.now()-startAt)/1000));document.getElementById('time').textContent=seconds;if(seconds===0)finishTest();},250);}
+function typeNow(){if(!started||ended)return;let v=document.getElementById('typing').value;let target=lessons[document.getElementById('lang').value];let correct=0;for(let i=0;i<v.length;i++)if(v[i]===target[i])correct++;let elapsed=Math.max(1,(Date.now()-startAt)/60000);document.getElementById('speed').textContent=Math.round(v.trim()?v.trim().split(/\s+/).length/elapsed:0);document.getElementById('accuracy').textContent=v.length?Math.round(correct/v.length*100):100;if(v.length>=target.length)document.getElementById('result').textContent='बहुत अच्छा! नया टेस्ट शुरू करके फिर अभ्यास करें।';}
+function finishTest(){if(!started||ended)return;ended=true;clearInterval(interval);document.getElementById('typing').disabled=true;document.getElementById('result').textContent='टेस्ट पूरा हुआ! आपकी स्पीड '+document.getElementById('speed').textContent+' WPM और Accuracy '+document.getElementById('accuracy').textContent+'% है।';}
+changeText();
+</script>
+</body>
+</html>
