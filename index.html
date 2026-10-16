@@ -128,7 +128,7 @@
   <h1>Typing Sathi</h1>
   <div class="creator-tag">✨ Created by Sarita ✨</div>
 
-  <!-- Student Name Box Added -->
+  <!-- Student Name Box -->
   <div class="form-group">
     <label for="userName">आपका नाम (Student Name):</label>
     <input type="text" id="userName" placeholder="Apna naam likhein..." autocomplete="off">
@@ -181,7 +181,7 @@
 </div>
 
 <script>
-  // Very long text contents to prevent early finishing
+  // Lessons Data including Beginners, Old, and 6 New Advanced Chapters
   const lessons = {
     en: [
       { name: "Chapter 1: Home Row Basic Practice", text: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl; fjdksla; fjdk sl a; asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a;" },
@@ -215,8 +215,12 @@
   let isTimerRunning = false;
 
   function loadChapters() {
-    const lang = document.getElementById("langSelect").value;
+    const langSelect = document.getElementById("langSelect");
+    const lang = langSelect ? langSelect.value : "en";
     const chapterSelect = document.getElementById("chapterSelect");
+    
+    if (!chapterSelect) return;
+    
     chapterSelect.innerHTML = "";
 
     lessons[lang].forEach((chap, idx) => {
@@ -254,3 +258,83 @@
       html += `<span class="${charClass}">${char}</span>`;
     }
     textDisplay.innerHTML = html;
+  }
+
+  function handleTyping() {
+    if (!isTimerRunning) {
+      startTimer();
+    }
+
+    renderText();
+    calculateStats();
+  }
+
+  function startTimer() {
+    isTimerRunning = true;
+    timerInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateTimerDisplay();
+        calculateStats();
+      } else {
+        clearInterval(timerInterval);
+        document.getElementById("userInput").disabled = true;
+        const name = document.getElementById("userName").value.trim() || "Student";
+        alert(`Time Over, ${name}! Aapki Speed: ${document.getElementById("wpmDisplay").innerText} WPM aur Accuracy: ${document.getElementById("accuracyDisplay").innerText} hai.`);
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+    const secs = String(timeLeft % 60).padStart(2, '0');
+    document.getElementById("timerDisplay").innerText = `${mins}:${secs}`;
+  }
+
+  function calculateStats() {
+    const typed = document.getElementById("userInput").value;
+    const totalTimePassed = parseInt(document.getElementById("timeSelect").value) - timeLeft;
+
+    if (totalTimePassed > 0) {
+      const wordsTyped = typed.trim().split(/\s+/).length;
+      const wpm = Math.round((wordsTyped / totalTimePassed) * 60);
+      document.getElementById("wpmDisplay").innerText = isNaN(wpm) ? 0 : wpm;
+    }
+
+    let correctChars = 0;
+    for (let i = 0; i < typed.length; i++) {
+      if (typed[i] === targetText[i]) correctChars++;
+    }
+
+    const accuracy = typed.length > 0 ? Math.round((correctChars / typed.length) * 100) : 100;
+    document.getElementById("accuracyDisplay").innerText = `${accuracy}%`;
+  }
+
+  function resetPractice() {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    
+    const langSelect = document.getElementById("langSelect");
+    const lang = langSelect ? langSelect.value : "en";
+    const chapterSelect = document.getElementById("chapterSelect");
+    const chapIdx = (chapterSelect && chapterSelect.value) ? chapterSelect.value : 0;
+    
+    baseText = lessons[lang][chapIdx] ? lessons[lang][chapIdx].text : lessons[lang][0].text;
+    targetText = baseText;
+
+    timeLeft = parseInt(document.getElementById("timeSelect").value);
+    document.getElementById("userInput").value = "";
+    document.getElementById("userInput").disabled = false;
+    document.getElementById("wpmDisplay").innerText = "0";
+    document.getElementById("accuracyDisplay").innerText = "100%";
+    
+    updateTimerDisplay();
+    renderText();
+  }
+
+  // Guaranteed Chapter Load on Startup
+  document.addEventListener("DOMContentLoaded", loadChapters);
+</script>
+
+</body>
+ </html>
