@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
@@ -67,8 +67,8 @@
       font-size: 20px;
       line-height: 1.6;
       background-color: #fff;
-      min-height: 100px;
-      max-height: 180px;
+      min-height: 120px;
+      max-height: 200px;
       overflow-y: auto;
       margin-bottom: 15px;
       font-family: monospace;
@@ -175,34 +175,34 @@
 </div>
 
 <script>
-  // Lessons Data including Beginners, Old, and 6 New Advanced Chapters
+  // Very long text contents to prevent early finishing
   const lessons = {
     en: [
-      { name: "Chapter 1: Home Row Basic (a s d f j k l ;)", text: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a;" },
-      { name: "Chapter 2: Home Row Words", text: "fall glad flask alas lads dads fads ask all fall salad a flash" },
-      { name: "Chapter 3: Top Row Practice (q w e r t y u i o p)", text: "qwer tyui op qwert yuiop quiet power tower write read tree type" },
-      { name: "Chapter 4: Bottom Row Practice (z x c v b n m)", text: "zxcv bnm zxcvb nm clean voice brown van cab box comb exam" },
-      { name: "Chapter 5: Shift Key & Capital Letters", text: "Sarita Typing Sathi India Delhi Keyboard Practice Success Goal" },
-      { name: "Chapter 6: Basic Practice (Purana Basic)", text: "the quick brown fox jumps over the lazy dog" },
-      { name: "Chapter 7: Medium Practice (Purana Medium)", text: "typing fast requires daily practice and focus on proper finger position" },
-      { name: "Chapter 8: Advanced Practice (Purana Advanced)", text: "artificial intelligence and web development are shaping the future of technology and computer education" },
-      // 6 New Added Advanced Chapters
-      { name: "Chapter 9: Advanced Speed Drills (Punctuation)", text: "Always double-check your code; errors are common when typing fast! Did you finish the task? Yes, I did." },
-      { name: "Chapter 10: Advanced Complex Vocabulary", text: "Extraordinary accomplishments necessitate persistent dedication, rigorous discipline, and uncompromising focus." },
-      { name: "Chapter 11: Professional Business Sentences", text: "Dear manager, please review the quarterly financial reports and submit your feedback before Friday afternoon." },
-      { name: "Chapter 12: Programming & Symbols Practice", text: "function calculateSum(a, b) { return a + b; } console.log(calculateSum(5, 10)); // Output is 15" },
-      { name: "Chapter 13: Long Paragraph Speed Master", text: "Mastering touch typing is an essential skill in the modern digital era. It dramatically improves productivity, reduces physical fatigue, and allows professionals to communicate ideas seamlessly across global networks." },
-      { name: "Chapter 14: Ultimate Expert Challenge", text: "In a world driven by continuous innovation, adaptability and continuous learning form the bedrock of enduring professional success. Sarita created this platform to empower every learner worldwide." }
+      { name: "Chapter 1: Home Row Basic Practice", text: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl; fjdksla; fjdk sl a; asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a;" },
+      { name: "Chapter 2: Home Row Words Drill", text: "fall glad flask alas lads dads fads ask all fall salad a flash fall glad flask alas lads dads fads ask all fall salad a flash fall glad flask alas lads dads fads ask all fall salad a flash" },
+      { name: "Chapter 3: Top Row Practice", text: "qwer tyui op qwert yuiop quiet power tower write read tree type qwer tyui op qwert yuiop quiet power tower write read tree type qwer tyui op qwert yuiop quiet power tower write read tree type" },
+      { name: "Chapter 4: Bottom Row Practice", text: "zxcv bnm zxcvb nm clean voice brown van cab box comb exam zxcv bnm zxcvb nm clean voice brown van cab box comb exam zxcv bnm zxcvb nm clean voice brown van cab box comb exam" },
+      { name: "Chapter 5: Shift Key & Capitals", text: "Sarita Typing Sathi India Delhi Keyboard Practice Success Goal Learn Fast Work Hard Sarita Typing Sathi India Delhi Keyboard Practice Success Goal Learn Fast Work Hard" },
+      { name: "Chapter 6: Basic Paragraph Practice", text: "the quick brown fox jumps over the lazy dog multiple times every single day to improve keyboard speed and maintain high typing accuracy without making mistakes on the screen." },
+      { name: "Chapter 7: Medium Paragraph Speed Test", text: "typing fast requires daily practice and focus on proper finger position across all rows of the keyboard. consistency is the ultimate key to achieving professional typing speeds in both Hindi and English." },
+      { name: "Chapter 8: Advanced Technical Paragraph", text: "artificial intelligence and web development are shaping the future of technology and computer education worldwide. developers build interactive platforms like typing sathi to help beginners master essential digital skills." },
+      { name: "Chapter 9: Advanced Punctuation Drills", text: "Always double-check your code; errors are common when typing fast! Did you finish the task? Yes, I did. Practice makes a person perfect, especially when working on complex typing modules daily." },
+      { name: "Chapter 10: Advanced Vocabulary Challenge", text: "Extraordinary accomplishments necessitate persistent dedication, rigorous discipline, and uncompromising focus during extensive practice sessions designed to push your maximum typing speed boundaries." },
+      { name: "Chapter 11: Professional Business Sentences", text: "Dear manager, please review the quarterly financial reports and submit your feedback before Friday afternoon. Ensure all project milestones are properly documented and communicated to the team." },
+      { name: "Chapter 12: Programming & Symbols Master", text: "function calculateSum(a, b) { return a + b; } console.log(calculateSum(5, 10)); // Output is 15. Always test your algorithms thoroughly before deploying code to production servers." },
+      { name: "Chapter 13: Long Paragraph Speed Master", text: "Mastering touch typing is an essential skill in the modern digital era. It dramatically improves productivity, reduces physical fatigue, and allows professionals to communicate ideas seamlessly across global networks without looking down at keys." },
+      { name: "Chapter 14: Ultimate Expert Challenge", text: "In a world driven by continuous innovation, adaptability and continuous learning form the bedrock of enduring professional success. Sarita created this platform to empower every aspiring learner worldwide with robust tools." }
     ],
     hi: [
-      { name: "Chapter 1: होम रो बेसिक", text: "क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न" },
-      { name: "Chapter 2: शब्द अभ्यास", text: "कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता" },
-      { name: "Chapter 3: सामान्य वाक्य", text: "कंप्यूटर साथी में आपका स्वागत है। नियमित अभ्यास से स्पीड बढ़ती है।" },
-      { name: "Chapter 4: एडवांस्ड अनुच्छेद", text: "शिक्षा किसी भी देश और समाज के विकास की सबसे महत्वपूर्ण नींव होती है। सरिता द्वारा बनाई गई यह वेबसाइट छात्रों को डिजिटल रूप से सशक्त बनाती है।" },
-      { name: "Chapter 5: कठिन शब्द और मात्राएँ", text: "विद्यार्थ, वैज्ञानिक, प्रौद्योगिकी, अंतर्राष्ट्रीय, आवश्यकता, स्वावलंबन, प्रासंगिकता" }
+      { name: "Chapter 1: होम रो बेसिक अभ्यास", text: "क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न" },
+      { name: "Chapter 2: शब्द अभ्यास लंबी प्रैक्टिस", text: "कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता" },
+      { name: "Chapter 3: सामान्य वाक्य अभ्यास", text: "कंप्यूटर साथी में आपका स्वागत है। नियमित अभ्यास से स्पीड बढ़ती है। कंप्यूटर साथी में आपका स्वागत है। नियमित अभ्यास से स्पीड बढ़ती है।" },
+      { name: "Chapter 4: एडवांस्ड अनुच्छेद अभ्यास", text: "शिक्षा किसी भी देश और समाज के विकास की सबसे महत्वपूर्ण नींव होती है। सरिता द्वारा बनाई गई यह वेबसाइट छात्रों को डिजिटल रूप से सशक्त बनाती है। नियमित अभ्यास से हाथों की गति तेज होती है।" },
+      { name: "Chapter 5: कठिन शब्द और मात्राएँ", text: "विद्यार्थी, वैज्ञानिक, प्रौद्योगिकी, अंतर्राष्ट्रीय, आवश्यकता, स्वावलंबन, प्रासंगिकता, विश्वविद्यालय, अनुसंधान, प्रमाणीकरण, कार्यक्षमता, डिजिटलीकरण" }
     ]
   };
 
+  let baseText = "";
   let targetText = "";
   let timeLeft = 60;
   let timerInterval = null;
@@ -226,6 +226,11 @@
   function renderText() {
     const textDisplay = document.getElementById("textDisplay");
     const typedText = document.getElementById("userInput").value;
+
+    // Auto-extend text if user is typing near the end so it never runs out
+    if (typedText.length >= targetText.length - 15) {
+      targetText += " " + baseText;
+    }
 
     let html = "";
     for (let i = 0; i < targetText.length; i++) {
@@ -300,7 +305,8 @@
     
     const lang = document.getElementById("langSelect").value;
     const chapIdx = document.getElementById("chapterSelect").value || 0;
-    targetText = lessons[lang][chapIdx].text;
+    baseText = lessons[lang][chapIdx].text;
+    targetText = baseText; // Initialize with base text
 
     timeLeft = parseInt(document.getElementById("timeSelect").value);
     document.getElementById("userInput").value = "";
@@ -317,4 +323,4 @@
 </script>
 
 </body>
-   </html>
+ </html> 
