@@ -450,6 +450,126 @@
         inputArea.focus();
     }
 </script>
+ <!-- Typing Sathi WhatsApp Channel Popup Code -->
+<div id="ts-whatsapp-popup" class="ts-popup-overlay">
+  <div class="ts-popup-card">
+    <button class="ts-close-btn" onclick="closeTsPopup()">&times;</button>
+    
+    <!-- Logo & Branding -->
+    <div class="ts-popup-header">
+      <div class="ts-logo-circle">TS</div>
+      <h3>Typing Sathi</h3>
+      <p>Your Ultimate Typing Exam Preparation Hub 🚀</p>
+    </div>
 
+    <!-- Motivational Shayari / Content -->
+    <div class="ts-popup-body">
+      <p class="ts-shayari">
+        "Na thakenge hath kabhi, na rukenge yeh kadam,<br>
+        keyboard ki har ki par likhenge hum apni kalam!<br>
+        Sapno ko sach karne ki thani hai mere sathi,<br>
+        tabhi to har student ki pehchan hai 'Typing Sathi'! 💻🚀"
+      </p>
+      <ul class="ts-features">
+        <li>🎯 Daily Practice Targets & Speed Tips</li>
+        <li>📝 Exam Alerts & Official Rules</li>
+        <li>💻 Useful Shortcuts & Study Material</li>
+      </ul>
+    </div>
+
+    <!-- Join Button with Your Channel Link -->
+    <div class="ts-popup-footer">
+      <a href="https://whatsapp.com/channel/0029Vb9jS8dHVvTRGWmuVw3x" target="_blank" class="ts-join-btn">
+        Join WhatsApp Channel Now 🚀
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.ts-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ts-popup-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+  animation: tsScaleUp 0.3s ease-in-out;
+}
+@keyframes tsScaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.ts-close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  background: none; border: none;
+  font-size: 28px; color: #888;
+  cursor: pointer;
+}
+.ts-close-btn:hover { color: #000; }
+.ts-logo-circle {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, #007bff, #28a745);
+  color: white; font-size: 24px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; margin: 0 auto 10px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.ts-popup-header h3 { margin: 5px 0 2px 0; color: #222; font-size: 22px; }
+.ts-popup-header p { color: #666; font-size: 13px; margin-bottom: 15px; }
+.ts-shayari {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-style: italic;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  border-left: 4px solid #28a745;
+  text-align: left;
+}
+.ts-features {
+  text-align: left;
+  font-size: 13px;
+  color: #444;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.ts-features li { margin-bottom: 6px; }
+.ts-join-btn {
+  display: block;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transition: background 0.2s;
+}
+.ts-join-btn:hover { background: #20ba5a; }
+</style>
+
+<script>
+function closeTsPopup() {
+  document.getElementById('ts-whatsapp-popup').style.display = 'none';
+}
+</script>
 </body>
  </html>
