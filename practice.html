@@ -278,19 +278,6 @@
         </p>
     </footer>
 </div>
-
-<!-- Modal Popup -->
-<div id="payModal" class="modal">
-    <div class="modal-content">
-        <h3>🔒 Premium Chapter Locked!</h3>
-        <p>Yeh passage Govt Exam ki tayari ke liye <b>Special Exam Pattern</b> par design kiya gaya hai.</p>
-        <p>Ise unlock karne aur Unlimited Govt Mock Tests paane ke liye Premium Access lein.</p>
-        <button class="btn-pay" onclick="alert('Payment Gateway Soon! Abhi ke liye aap 15 Free Basic Chapters practice karein.')">Unlock Now ₹49</button>
-        <br>
-        <button class="btn-close" onclick="closeModal()">Close</button>
-    </div>
-</div>
-
 <script>
     const passages = {
         ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
@@ -537,4 +524,37 @@
   border-radius: 8px;
   font-style: italic;
   font-size: 13px;
-  color
+  color: #555;
+ <!-- आपकी practice.html का बाकी टाइपिंग वाला कोड और स्क्रिप्ट्स -->
+
+  <script>
+    // --- यहाँ आपकी पुरानी टाइपिंग और पैसेज वाला जावास्क्रिप्ट कोड हो सकता है ---
+
+    // ==========================================
+    // SINGLE DEVICE ACTIVE SESSION CHECK (यह वाला कोड यहाँ जोड़ना है)
+    // ==========================================
+    (function checkSingleDeviceSession() {
+      const isGovtChapter = localStorage.getItem('is_govt_chapter');
+      const activePassword = localStorage.getItem('active_govt_pass');
+      const sessionToken = localStorage.getItem('active_govt_session');
+
+      if (isGovtChapter === 'true' && activePassword && sessionToken) {
+        setInterval(() => {
+          const currentLivePass = localStorage.getItem('active_govt_pass');
+          const currentLiveToken = localStorage.getItem('active_govt_session');
+
+          if (currentLivePass === activePassword && currentLiveToken !== sessionToken) {
+            alert("⚠️ यह पासवर्ड किसी दूसरे डिवाइस पर स्टार्ट हो गया है। आपका सेशन यहाँ समाप्त किया जाता है।");
+            
+            localStorage.removeItem('is_govt_chapter');
+            localStorage.removeItem('active_govt_pass');
+            localStorage.removeItem('active_govt_session');
+            
+            window.location.href = 'index.html';
+          }
+        }, 4000);
+      }
+    })();
+  </script>
+</body>
+</html>
