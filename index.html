@@ -180,6 +180,67 @@
       errorElem.style.display = 'block';
     }
   }
+    // 1. जब फ्री/नॉर्मल चैप्टर पर क्लिक हो (पासवर्ड बॉक्स छुप जाएगा)
+function openNormalChapter(chapterId) {
+  currentSelectedChapter = chapterId;
+  document.getElementById('modalTitle').innerText = 'Student Registration';
+  
+  // पासवर्ड का डिब्बा छुपा दें
+  const passBox = document.getElementById('govtPasswordContainer');
+  if (passBox) passBox.style.display = 'none';
+  
+  document.getElementById('welcomeModal').style.display = 'block';
+}
+
+// 2. जब Govt Chapter पर क्लिक हो (पासवर्ड बॉक्स दिखाई देगा)
+function openGovtChapter(chapterId) {
+  currentSelectedChapter = chapterId;
+  document.getElementById('modalTitle').innerText = 'Govt Exam Chapter Access';
+  
+  // पासवर्ड का डिब्बा दिखाएँ
+  const passBox = document.getElementById('govtPasswordContainer');
+  if (passBox) passBox.style.display = 'block';
+  
+  document.getElementById('welcomeModal').style.display = 'block';
+}
+
+// 3. फॉर्म सबमिट होने पर चेक करने के लिए
+function startPractice() {
+  const name = document.getElementById('studentName').value.trim();
+  const contact = document.getElementById('studentContact').value.trim();
+  const passBox = document.getElementById('govtPasswordContainer');
+
+  if (!name || !contact) {
+    alert("कृपया अपना नाम और संपर्क जानकारी भरें!");
+    return;
+  }
+
+  // अगर पासवर्ड वाला डिब्बा दिख रहा है, मतलब यह Govt Chapter है
+  if (passBox && passBox.style.display !== 'none') {
+    const inputPass = document.getElementById('studentPassword').value.trim();
+
+    if (!ALLOWED_GOVT_PASSWORDS.includes(inputPass)) {
+      alert("❌ अमान्य पासवर्ड! कृपया सही पासवर्ड दर्ज करें।");
+      return;
+    }
+
+    // Single Device Security के लिए सेशन टोकन सेट करें
+    const sessionToken = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('is_govt_chapter', 'true');
+    localStorage.setItem('active_govt_pass', inputPass);
+    localStorage.setItem('active_govt_session', sessionToken);
+  } else {
+    // Normal Chapter के लिए (बिना पासवर्ड)
+    localStorage.setItem('is_govt_chapter', 'false');
+    localStorage.removeItem('active_govt_pass');
+    localStorage.removeItem('active_govt_session');
+  }
+
+  // छात्र का नाम और चैप्टर सेव करके प्रैक्टिस पेज पर भेजें
+  localStorage.setItem('student_name', name);
+  localStorage.setItem('selected_chapter', currentSelectedChapter);
+  window.location.href = 'practice.html';
+}
 </script>
 
 </body>
