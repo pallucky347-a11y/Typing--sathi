@@ -1,1 +1,540 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Sathi - Created by Sarita</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .creator-tag {
+            text-align: center;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input, button, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .guide-box {
+            background-color: #eef6ff;
+            border-left: 5px solid #007bff;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .exam-toggle-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .exam-toggle-box label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 15px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        #text-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            height: 150px;
+            overflow-y: auto;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+        #text-display.no-highlight {
+            background: #ffffff;
+        }
+        #input-area {
+            font-size: 18px;
+            height: 90px;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background: #f1f3f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            gap: 8px;
+        }
+        .stats-item {
+            background: #ffffff;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            flex: 1 1 30%;
+            text-align: center;
+        }
+        .btn-restart {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        .btn-restart:hover {
+            background: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-content h3 { color: #d9534f; margin-top: 0; }
+        .btn-close {
+            background: #6c757d;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .btn-pay {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #555;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container">
+ <img src="logo.jpg" alt="Typing Sathi Logo" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 10px auto;">
+    <h1>Typing Sathi</h1>
+    <div class="creator-tag">Created by Sarita</div>
+
+    <!-- Student Name Input Box -->
+    <div class="form-group">
+        <label for="student-name">👤 Student Name (अपना नाम लिखें):</label>
+        <input type="text" id="student-name" placeholder="Yahan apna naam likhein...">
+    </div>
+
+    <!-- Chapter Selection -->
+    <div class="form-group">
+        <label for="chapter-select">🎯 Practice Chapters & Govt Exam Modes:</label>
+        <select id="chapter-select" onchange="handleChapterChange()">
+            <optgroup label="📚 Free Basic Typing Course (15 Chapters)">
+                <option value="ch1">Chapter 1: Home Row Basic (a s d f j k l ;)</option>
+                <option value="ch2">Chapter 2: Home Row Keys Mix (asdf jkl; g h)</option>
+                <option value="ch3">Chapter 3: Home Row Easy Words (fall glad dad flash)</option>
+                <option value="ch4">Chapter 4: Home Row Full Sentences</option>
+                <option value="ch5">Chapter 5: Top Row Keys Practice (q w e r t y u i o p)</option>
+                <option value="ch6">Chapter 6: Top + Home Row Mix Words</option>
+                <option value="ch7">Chapter 7: Top Row Sentence Practice</option>
+                <option value="ch8">Chapter 8: Bottom Row Keys Practice (z x c v b n m)</option>
+                <option value="ch9">Chapter 9: All 3 Rows Mixed Words</option>
+                <option value="ch10">Chapter 10: All Rows Easy Sentences</option>
+                <option value="ch11">Chapter 11: Shift Key & Capital Letters Practice</option>
+                <option value="ch12">Chapter 12: Numbers Keypad Practice (1234567890)</option>
+                <option value="ch13">Chapter 13: Symbols & Punctuation Practice (!@#$%^&*)</option>
+                <option value="ch14">Chapter 14: Short Story & Speed Drill 1</option>
+                <option value="ch15">Chapter 15: Advanced Paragraph & Speed Test</option>
+            </optgroup>
+            <optgroup label="🏆 Govt Exam Special (Paid / Locked)">
+                <option value="ssc_cgl">🔒 SSC CGL / CHSL Exam Pattern (2000 Depressions)</option>
+                <option value="court_steno">🔒 High Court & Legal Passages</option>
+                <option value="deo_special">🔒 Bank & DEO Special (Numbers & Symbols)</option>
+                <option value="mock_test1">🔒 Real Govt Exam Mock Passage 1</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <!-- Finger Placement Guide -->
+    <div class="guide-box">
+        💡 <strong>Finger Placement Guide:</strong> Baayein haath ki ungliyaan <b>A S D F</b> par aur daayein haath ki ungliyaan <b>J K L ;</b> par rakhein. Spacebar thumb se dabayein.
+    </div>
+
+    <!-- Exam Rules Toggle -->
+    <div class="exam-toggle-box">
+        <strong>⚙️ Real Exam Mode Settings:</strong><br>
+        <label><input type="checkbox" id="lock-backspace"> 🚫 Disable Backspace (Strict Exam Mode)</label>
+        <label><input type="checkbox" id="hide-highlight" onchange="toggleHighlight()"> 🙈 Hide Word Highlighting</label>
+    </div>
+
+    <!-- Timer Selection -->
+    <div class="form-group">
+        <label for="timer-select">Samay (Timer):</label>
+        <select id="timer-select" onchange="resetTest()">
+            <option value="1">1 Minute</option>
+            <option value="2">2 Minutes</option>
+            <option value="5">5 Minutes</option>
+            <option value="10">10 Minutes (Exam Standard)</option>
+            <option value="15">15 Minutes (SSC Standard)</option>
+        </select>
+    </div>
+
+    <!-- Paragraph Display Area -->
+    <div id="text-display">asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;</div>
+
+    <!-- User Input Area -->
+    <textarea id="input-area" placeholder="Yahan type karna shuru karein..."></textarea>
+
+    <!-- Stats Counter -->
+    <div class="stats-grid">
+        <div class="stats-item">Time: <span id="time">01:00</span></div>
+        <div class="stats-item">WPM: <span id="wpm">0</span></div>
+        <div class="stats-item">Accuracy: <span id="accuracy">100%</span></div>
+        <div class="stats-item" style="color: #d9534f;">Errors: <span id="errors">0</span></div>
+        <div class="stats-item" style="color: #f0ad4e;">Backspace: <span id="backspace">0</span></div>
+        <div class="stats-item" style="color: #0275d8;">Total Keys: <span id="total-keys">0</span></div>
+    </div>
+
+    <button class="btn-restart" id="restart-btn" onclick="resetTest()">Reset / Restart</button>
+
+    <!-- Footer Links for AdSense -->
+    <footer>
+        <p>© 2026 Typing Sathi - Created by Sarita | All Rights Reserved</p>
+        <p>
+            <a href="about.html">About Us</a> | 
+            <a href="contact.html">Contact Us</a> | 
+            <a href="privacy.html">Privacy Policy</a>
+        </p>
+    </footer>
+</div>
+
+<!-- Modal Popup -->
+<div id="payModal" class="modal">
+    <div class="modal-content">
+        <h3>🔒 Premium Chapter Locked!</h3>
+        <p>Yeh passage Govt Exam ki tayari ke liye <b>Special Exam Pattern</b> par design kiya gaya hai.</p>
+        <p>Ise unlock karne aur Unlimited Govt Mock Tests paane ke liye Premium Access lein.</p>
+        <button class="btn-pay" onclick="alert('Payment Gateway Soon! Abhi ke liye aap 15 Free Basic Chapters practice karein.')">Unlock Now ₹49</button>
+        <br>
+        <button class="btn-close" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    const passages = {
+        ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
+        ch2: "asdfg hjkl; gfdsa ;lkjh asdfg hjkl; gfdsa ;lkjh gfds hjkl asdf gfdsa",
+        ch3: "fall glad dad flash glass salad flask All dads fall glad A flash salad",
+        ch4: "a dad had a flask. a glad lad falls. all glass falls. a flash salad is glad.",
+        ch5: "qwerty uiop qwert yuiop q w e r t y u i o p quert yuiop qwert yuiop",
+        ch6: "type quay row write tree pot pour territory quiet quote require power territory",
+        ch7: "you write quiet poetry. we require power to write. quiet poetry is pretty.",
+        ch8: "zxcvbnm zxcvb nmcxz vbnm z x c v b n m zxcv nmbvc xzxcv bnmxz",
+        ch9: "back cabin man calm examine zinc vex zero mix brave dynamic flexible vocal",
+        ch10: "pack my box with five dozen liquor jugs. brave men examine the dynamic zinc.",
+        ch11: "India is my Country. Sarita Tuition Classes teaches Computer and Mathematics.",
+        ch12: "12345 67890 98765 43210 10293 84756 56473 82910 123 456 7890",
+        ch13: "hello@world.com #123 $450 & 100% test! (typing-sathi) + = {practice};",
+        ch14: "Practice makes a person perfect. Typing regularly every day improves your speed and accuracy. Always keep your back straight while typing on keyboard.",
+        ch15: "Computer typing is an essential skill for modern digital education. Master the home row keys first, then gradually build your speed with consistent daily drills."
+    };
+
+    let timer = 60;
+    let timeLeft = timer;
+    let timerInterval = null;
+    let isTypingStarted = false;
+
+    let totalKeysTyped = 0;
+    let backspaceCount = 0;
+    let totalErrors = 0;
+
+    const chapterSelect = document.getElementById('chapter-select');
+    const timerSelect = document.getElementById('timer-select');
+    const studentNameInput = document.getElementById('student-name');
+    const timeDisplay = document.getElementById('time');
+    const wpmDisplay = document.getElementById('wpm');
+    const accuracyDisplay = document.getElementById('accuracy');
+    const errorsDisplay = document.getElementById('errors');
+    const backspaceDisplay = document.getElementById('backspace');
+    const totalKeysDisplay = document.getElementById('total-keys');
+
+    const textDisplay = document.getElementById('text-display');
+    const inputArea = document.getElementById('input-area');
+    const lockBackspace = document.getElementById('lock-backspace');
+    const hideHighlight = document.getElementById('hide-highlight');
+
+    function handleChapterChange() {
+        const val = chapterSelect.value;
+        if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_') || val.startsWith('mock_')) {
+            document.getElementById('payModal').style.display = 'flex';
+            chapterSelect.value = 'ch1';
+            resetTest();
+        } else {
+            textDisplay.innerText = passages[val] || passages['ch1'];
+            resetTest();
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('payModal').style.display = 'none';
+    }
+
+    function toggleHighlight() {
+        if (hideHighlight.checked) {
+            textDisplay.classList.add('no-highlight');
+        } else {
+            textDisplay.classList.remove('no-highlight');
+        }
+    }
+
+    inputArea.addEventListener('keydown', (e) => {
+        if (lockBackspace.checked && e.key === 'Backspace') {
+            e.preventDefault();
+            return;
+        }
+
+        if (!isTypingStarted) {
+            startTimer();
+            isTypingStarted = true;
+        }
+
+        if (e.key === 'Backspace') {
+            backspaceCount++;
+            backspaceDisplay.innerText = backspaceCount;
+        } else if (e.key.length === 1) {
+            totalKeysTyped++;
+            totalKeysDisplay.innerText = totalKeysTyped;
+        }
+    });
+
+    inputArea.addEventListener('input', () => {
+        const originalText = textDisplay.innerText;
+        const typedText = inputArea.value;
+
+        let currentErrors = 0;
+        for (let i = 0; i < typedText.length; i++) {
+            if (typedText[i] !== originalText[i]) {
+                currentErrors++;
+            }
+        }
+
+        totalErrors = currentErrors;
+        errorsDisplay.innerText = totalErrors;
+
+        if (typedText.length > 0) {
+            let correctChars = typedText.length - totalErrors;
+            let accuracyVal = Math.round((correctChars / typedText.length) * 100);
+            accuracyDisplay.innerText = (accuracyVal < 0 ? 0 : accuracyVal) + '%';
+        } else {
+            accuracyDisplay.innerText = '100%';
+        }
+
+        let timeElapsed = timer - timeLeft;
+        if (timeElapsed > 0) {
+            let wordsTyped = typedText.trim().split(/\s+/).filter(w => w.length > 0).length;
+            let wpmVal = Math.round((wordsTyped / timeElapsed) * 60);
+            wpmDisplay.innerText = wpmVal;
+        }
+    });
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            } else {
+                clearInterval(timerInterval);
+                inputArea.disabled = true;
+                
+                let studentName = studentNameInput.value.trim() || "Student";
+                alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay.innerText} WPM\nAccuracy: ${accuracyDisplay.innerText}\nTotal Errors: ${totalErrors}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);
+            }
+        }, 1000);
+    }
+
+    function resetTest() {
+        clearInterval(timerInterval);
+        isTypingStarted = false;
+        
+        timer = parseInt(timerSelect.value) * 60;
+        timeLeft = timer;
+        
+        let mins = Math.floor(timeLeft / 60);
+        let secs = timeLeft % 60;
+        timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+        totalKeysTyped = 0;
+        backspaceCount = 0;
+        totalErrors = 0;
+
+        wpmDisplay.innerText = '0';
+        accuracyDisplay.innerText = '100%';
+        errorsDisplay.innerText = '0';
+        backspaceDisplay.innerText = '0';
+        totalKeysDisplay.innerText = '0';
+
+        inputArea.value = '';
+        inputArea.disabled = false;
+        inputArea.focus();
+    }
+</script>
+ <!-- Typing Sathi WhatsApp Channel Popup Code -->
+<div id="ts-whatsapp-popup" class="ts-popup-overlay">
+  <div class="ts-popup-card">
+    <button class="ts-close-btn" onclick="closeTsPopup()">&times;</button>
+    
+    <!-- Logo & Branding -->
+    <div class="ts-popup-header">
+      <div class="ts-logo-circle">TS</div>
+      <h3>Typing Sathi</h3>
+      <p>Your Ultimate Typing Exam Preparation Hub 🚀</p>
+    </div>
+
+    <!-- Motivational Shayari / Content -->
+    <div class="ts-popup-body">
+      <p class="ts-shayari">
+        "Na thakenge hath kabhi, na rukenge yeh kadam,<br>
+        keyboard ki har ki par likhenge hum apni kalam!<br>
+        Sapno ko sach karne ki thani hai mere sathi,<br>
+        tabhi to har student ki pehchan hai 'Typing Sathi'! 💻🚀"
+      </p>
+      <ul class="ts-features">
+        <li>🎯 Daily Practice Targets & Speed Tips</li>
+        <li>📝 Exam Alerts & Official Rules</li>
+        <li>💻 Useful Shortcuts & Study Material</li>
+      </ul>
+    </div>
+
+    <!-- Join Button with Your Channel Link -->
+    <div class="ts-popup-footer">
+      <a href="https://whatsapp.com/channel/0029Vb9jS8dHVvTRGWmuVw3x" target="_blank" class="ts-join-btn">
+        Join WhatsApp Channel Now 🚀
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.ts-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ts-popup-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+  animation: tsScaleUp 0.3s ease-in-out;
+}
+@keyframes tsScaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.ts-close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  background: none; border: none;
+  font-size: 28px; color: #888;
+  cursor: pointer;
+}
+.ts-close-btn:hover { color: #000; }
+.ts-logo-circle {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, #007bff, #28a745);
+  color: white; font-size: 24px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; margin: 0 auto 10px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.ts-popup-header h3 { margin: 5px 0 2px 0; color: #222; font-size: 22px; }
+.ts-popup-header p { color: #666; font-size: 13px; margin-bottom: 15px; }
+.ts-shayari {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-style: italic;
+  font-size: 13px;
+  color
