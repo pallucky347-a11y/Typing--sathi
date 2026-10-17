@@ -83,6 +83,104 @@
             <button type="submit" class="btn-submit">Register & Start Practice 🚀</button>
         </form>
     </div>
+    <!-- ========================================== -->
+<!-- 1. NORMAL CHAPTER WELCOME MODAL -->
+<!-- ========================================== -->
+<div id="welcomeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:#ffffff; padding:25px; border-radius:12px; text-align:center; max-width:360px; width:90%; box-shadow:0 8px 20px rgba(0,0,0,0.3); font-family: sans-serif;">
+    <h2 style="color:#2c3e50; margin-top:0; margin-bottom:10px; font-size:22px;">⌨️ Welcome to Typing Sathi!</h2>
+    <p style="color:#555; font-size:14px; margin-bottom:18px; line-height:1.4;">अपनी टाइपिंग स्पीड और एक्यूरेसी को बेहतर बनाने के लिए तैयार हैं?</p>
+    
+    <input type="text" id="studentNameInput" placeholder="अपना नाम लिखें (Optional)" style="width:90%; padding:10px; margin-bottom:18px; border:1px solid #ccc; border-radius:6px; font-size:14px; outline:none;">
+    
+    <button onclick="startNormalChapter()" style="background:#28a745; color:white; border:none; padding:12px 20px; border-radius:6px; font-size:15px; cursor:pointer; font-weight:bold; width:100%;">🚀 Start Practice</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 2. GOVT PREPARATION PASSWORD MODAL -->
+<!-- ========================================== -->
+<div id="govtModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:#ffffff; padding:25px; border-radius:12px; text-align:center; max-width:360px; width:90%; box-shadow:0 8px 20px rgba(0,0,0,0.3); font-family: sans-serif;">
+    <h3 style="color:#d9534f; margin-top:0; margin-bottom:10px; font-size:20px;">🔒 Govt Exam Chapter Access</h3>
+    <p style="color:#555; font-size:13px; margin-bottom:15px; line-height:1.4;">इस चैप्टर को अनलॉक करने के लिए अपना स्पेशल एक्सेस पासवर्ड दर्ज करें:</p>
+    
+    <input type="password" id="govtPasswordInput" placeholder="Enter Govt Access Password" style="width:90%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:6px; font-size:14px; outline:none;">
+    
+    <p id="govtErrorMsg" style="color:#d9534f; font-size:12px; margin-bottom:12px; display:none; font-weight:bold;"></p>
+    
+    <div style="display:flex; justify-content:space-between; gap:10px;">
+      <button onclick="verifyGovtPassword()" style="background:#0275d8; color:white; border:none; padding:10px; border-radius:6px; font-size:14px; cursor:pointer; font-weight:bold; flex:1;">Unlock Chapter</button>
+      <button onclick="closeGovtModal()" style="background:#6c757d; color:white; border:none; padding:10px; border-radius:6px; font-size:14px; cursor:pointer; flex:1;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 3. JAVASCRIPT LOGIC & 50 GOVT PASSWORDS -->
+<!-- ========================================== -->
+<script>
+  const ALLOWED_GOVT_PASSWORDS = [
+    "GOVT#SATHI@8492", "EXAM$PRP#9201", "SSC#MASTER@4713", "BANK$PREP#8305", "GOVT#ACCS@1948",
+    "STFF$SELC#7294", "RAIL$JOB#6183", "UPSS$CPST#5029", "CRPF$TYPE#3814", "DEF$GOVT#9162",
+    "TS#GOVT@8391", "GV$SECURE#6402", "PASS$GOVT#7159", "TS#CPT@5924", "GOVT$TEST#4831",
+    "EXAM#PASS@9073", "GOVT$PORTAL#3185", "OFFICER#PASS@6249", "GOVT#ZONE@7310", "SKILL$TEST#8592",
+    "GVT#BATCH1@9401", "GVT#BATCH2@8152", "GVT#BATCH3@3729", "GVT#BATCH4@6048", "GVT#BATCH5@5291",
+    "GVT#BATCH6@7483", "GVT#BATCH7@1930", "GVT#BATCH8@8264", "GVT#BATCH9@4051", "GVT#BATCH10@6372",
+    "TYPIST#GOVT$8419", "TYPIST#GOVT$9302", "TYPIST#GOVT$1847", "TYPIST#GOVT$6295", "TYPIST#GOVT$5031",
+    "TYPIST#GOVT$7184", "TYPIST#GOVT$4926", "TYPIST#GOVT$8310", "TYPIST#GOVT$2075", "TYPIST#GOVT$6583",
+    "SARITA#GOVT$9914", "SARITA#GOVT$8273", "SARITA#GOVT$6105", "SARITA#GOVT$4392", "SARITA#GOVT$7518",
+    "SARITA#GOVT$2849", "SARITA#GOVT$5063", "SARITA#GOVT$9137", "SARITA#GOVT$3720", "SARITA#GOVT$8461"
+  ];
+  let currentSelectedChapter = null;
+
+  // Normal Chapter Click Handler
+  function openNormalChapter(chapterId) {
+    currentSelectedChapter = chapterId;
+    document.getElementById('welcomeModal').style.display = 'flex';
+  }
+
+  function startNormalChapter() {
+    const studentName = document.getElementById('studentNameInput').value.trim() || "Guest Student";
+    localStorage.setItem('student_name', studentName);
+    localStorage.setItem('selected_chapter', currentSelectedChapter);
+    localStorage.setItem('is_govt_chapter', 'false');
+    
+    document.getElementById('welcomeModal').style.display = 'none';
+    window.location.href = 'practice.html'; // Direct practice.html par bhejega
+  }
+
+  // Govt Chapter Click Handler
+  function openGovtChapter(chapterId) {
+    currentSelectedChapter = chapterId;
+    document.getElementById('govtPasswordInput').value = '';
+    document.getElementById('govtErrorMsg').style.display = 'none';
+    document.getElementById('govtModal').style.display = 'flex';
+  }
+
+  function closeGovtModal() {
+    document.getElementById('govtModal').style.display = 'none';
+  }
+
+  function verifyGovtPassword() {
+    const inputPass = document.getElementById('govtPasswordInput').value.trim();
+    const errorElem = document.getElementById('govtErrorMsg');
+
+    if (ALLOWED_GOVT_PASSWORDS.includes(inputPass)) {
+      const currentSessionToken = Date.now().toString();
+      localStorage.setItem('active_govt_pass', inputPass);
+      localStorage.setItem('active_govt_session', currentSessionToken);
+      localStorage.setItem('selected_chapter', currentSelectedChapter);
+      localStorage.setItem('is_govt_chapter', 'true');
+
+      closeGovtModal();
+      window.location.href = 'practice.html'; // Password sahi hone par practice.html par bhejega
+    } else {
+      errorElem.innerText = "❌ गलत पासवर्ड! कृपया सही एक्सेस पासवर्ड दर्ज करें।";
+      errorElem.style.display = 'block';
+    }
+  }
+</script>
 
 </body>
 </html> 
