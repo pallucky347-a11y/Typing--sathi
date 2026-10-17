@@ -1,340 +1,411 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typing Sathi - Created by Sarita</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 800px;
-      width: 100%;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 5px;
-    }
-    .creator-tag {
-      text-align: center;
-      color: #007bff;
-      font-weight: bold;
-      margin-bottom: 20px;
-      font-size: 15px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-    select, input, button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    .guide-box {
-      background-color: #eef6ff;
-      border-left: 5px solid #007bff;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    /* Typing display box */
-    .text-display {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 15px;
-      font-size: 20px;
-      line-height: 1.6;
-      background-color: #fff;
-      min-height: 120px;
-      max-height: 200px;
-      overflow-y: auto;
-      margin-bottom: 15px;
-      font-family: monospace;
-      word-wrap: break-word;
-    }
-    /* Character highlighting */
-    .correct {
-      color: green;
-      background-color: #e6ffe6;
-    }
-    .incorrect {
-      color: red;
-      background-color: #ffe6e6;
-      text-decoration: underline;
-    }
-    .current {
-      background-color: #ffd700;
-      border-bottom: 2px solid #000;
-    }
-    .typing-input {
-      font-size: 18px;
-      padding: 12px;
-      font-family: monospace;
-    }
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      background: #f8f9fa;
-      padding: 10px;
-      border-radius: 6px;
-    }
-    .btn-reset {
-      margin-top: 15px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .btn-reset:hover {
-      background-color: #0056b3;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 13px;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Sathi - Created by Sarita</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .creator-tag {
+            text-align: center;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input, button, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .guide-box {
+            background-color: #eef6ff;
+            border-left: 5px solid #007bff;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .exam-toggle-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .exam-toggle-box label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 15px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        #text-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            height: 150px;
+            overflow-y: auto;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+        #text-display.no-highlight {
+            background: #ffffff;
+        }
+        #input-area {
+            font-size: 18px;
+            height: 90px;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background: #f1f3f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            gap: 8px;
+        }
+        .stats-item {
+            background: #ffffff;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            flex: 1 1 30%;
+            text-align: center;
+        }
+        .btn-restart {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        .btn-restart:hover {
+            background: #0056b3;
+        }
+        /* Paywall Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-content h3 { color: #d9534f; margin-top: 0; }
+        .btn-close {
+            background: #6c757d;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .btn-pay {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Typing Sathi</h1>
-  <div class="creator-tag">✨ Created by Sarita ✨</div>
+    <h1>Typing Sathi</h1>
+    <div class="creator-tag">Created by Sarita</div>
 
-  <!-- Student Name Box -->
-  <div class="form-group">
-    <label for="userName">आपका नाम (Student Name):</label>
-    <input type="text" id="userName" placeholder="Apna naam likhein..." autocomplete="off">
-  </div>
+    <!-- Chapter Selection (Free + Locked Govt Special) -->
+    <div class="form-group">
+        <label for="chapter-select">🎯 Practice Chapters & Govt Exam Modes:</label>
+        <select id="chapter-select" onchange="handleChapterChange()">
+            <optgroup label="Free Basic Chapters">
+                <option value="ch1">Chapter 1: Home Row Basic Practice</option>
+                <option value="ch2">Chapter 2: Top Row Words</option>
+                <option value="ch3">Chapter 3: Bottom Row & Numbers</option>
+            </optgroup>
+            <optgroup label="🏆 Govt Exam Special (Paid / Locked)">
+                <option value="ssc_cgl">🔒 SSC CGL / CHSL Exam Pattern (2000 Depressions)</option>
+                <option value="court_steno">🔒 High Court & Legal Passages</option>
+                <option value="deo_special">🔒 Bank & DEO Special (Numbers & Symbols)</option>
+                <option value="mock_test1">🔒 Real Govt Exam Mock Passage 1</option>
+            </optgroup>
+        </select>
+    </div>
 
-  <div class="form-group">
-    <label>भाषा चुनें (Select Language)</label>
-    <select id="langSelect" onchange="loadChapters()">
-      <option value="en">English</option>
-      <option value="hi">Hindi (Krutidev / Inscript)</option>
-    </select>
-  </div>
+    <!-- Finger Placement Guide -->
+    <div class="guide-box">
+        💡 <strong>Finger Placement Guide:</strong> Baayein haath ki ungliyaan <b>A S D F</b> par aur daayein haath ki ungliyaan <b>J K L ;</b> par rakhein. Spacebar thumb (angoothe) se dabayein.
+    </div>
 
-  <div class="form-group">
-    <label>चैप्टर चुनें (Select Chapter)</label>
-    <select id="chapterSelect" onchange="resetPractice()"></select>
-  </div>
+    <!-- Real Govt Exam Rules Toggle -->
+    <div class="exam-toggle-box">
+        <strong>⚙️ Real Exam Mode Settings:</strong><br>
+        <label><input type="checkbox" id="lock-backspace"> 🚫 Disable Backspace (Strict Exam Mode)</label>
+        <label><input type="checkbox" id="hide-highlight" onchange="toggleHighlight()"> 🙈 Hide Word Highlighting</label>
+    </div>
 
-  <!-- Beginners Guide Section -->
-  <div class="guide-box" id="guideText">
-    💡 <b>Finger Placement Guide:</b> Baayein haath ki ungliyaan <b>A S D F</b> par aur daayein haath ki ungliyaan <b>J K L ;</b> par rakhein. Spacebar thumb (angoothe) se dabayein.
-  </div>
+    <!-- Timer Selection -->
+    <div class="form-group">
+        <label for="timer-select">Samay (Timer):</label>
+        <select id="timer-select" onchange="resetTest()">
+            <option value="1">1 Minute</option>
+            <option value="2">2 Minutes</option>
+            <option value="5">5 Minutes</option>
+            <option value="10">10 Minutes (Exam Standard)</option>
+            <option value="15">15 Minutes (SSC Standard)</option>
+        </select>
+    </div>
 
-  <div class="form-group">
-    <label>समय (Timer)</label>
-    <select id="timeSelect" onchange="resetPractice()">
-      <option value="60">1 Minute</option>
-      <option value="120">2 Minutes</option>
-      <option value="300">5 Minutes</option>
-    </select>
-  </div>
+    <!-- Paragraph Display Area -->
+    <div id="text-display">asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;</div>
 
-  <!-- Text Display Screen -->
-  <div class="text-display" id="textDisplay"></div>
+    <!-- User Input Area -->
+    <textarea id="input-area" placeholder="Yahan type karna shuru karein..."></textarea>
 
-  <!-- Typing Input Area -->
-  <input type="text" id="userInput" class="typing-input" placeholder="Yahan type karna shuru karein..." oninput="handleTyping()" autocomplete="off">
+    <!-- Stats Counter -->
+    <div class="stats-grid">
+        <div class="stats-item">Time: <span id="time">01:00</span></div>
+        <div class="stats-item">WPM: <span id="wpm">0</span></div>
+        <div class="stats-item">Accuracy: <span id="accuracy">100%</span></div>
+        <div class="stats-item" style="color: #d9534f;">Errors: <span id="errors">0</span></div>
+        <div class="stats-item" style="color: #f0ad4e;">Backspace: <span id="backspace">0</span></div>
+        <div class="stats-item" style="color: #0275d8;">Total Keys: <span id="total-keys">0</span></div>
+    </div>
 
-  <div class="stats">
-    <span>Time: <span id="timerDisplay">01:00</span></span>
-    <span>WPM: <span id="wpmDisplay">0</span></span>
-    <span>Accuracy: <span id="accuracyDisplay">100%</span></span>
-  </div>
+    <button class="btn-restart" id="restart-btn" onclick="resetTest()">Reset / Restart</button>
+</div>
 
-  <button class="btn-reset" onclick="resetPractice()">Reset / Restart</button>
-  
-  <div class="footer">
-    &copy; 2026 Typing Sathi | Designed & Developed by Sarita
-  </div>
+<!-- Paywall / Premium Unlock Modal Popup -->
+<div id="payModal" class="modal">
+    <div class="modal-content">
+        <h3>🔒 Premium Chapter Locked!</h3>
+        <p>Yeh passage Govt Exam (SSC / Court / DEO) ki tayari ke liye <b>Special Exam Pattern</b> par design kiya gaya hai.</p>
+        <p>Ise unlock karne aur Unlimited Govt Mock Tests paane ke liye Premium Access lein.</p>
+        <button class="btn-pay" onclick="alert('Payment Gateway Soon! Abhi ke liye aap Free Chapters practice karein.')">Unlock Now ₹49</button>
+        <br>
+        <button class="btn-close" onclick="closeModal()">Close</button>
+    </div>
 </div>
 
 <script>
-  // Lessons Data including Beginners, Old, and 6 New Advanced Chapters
-  const lessons = {
-    en: [
-      { name: "Chapter 1: Home Row Basic Practice", text: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl; fjdksla; fjdk sl a; asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a;" },
-      { name: "Chapter 2: Home Row Words Drill", text: "fall glad flask alas lads dads fads ask all fall salad a flash fall glad flask alas lads dads fads ask all fall salad a flash fall glad flask alas lads dads fads ask all fall salad a flash" },
-      { name: "Chapter 3: Top Row Practice", text: "qwer tyui op qwert yuiop quiet power tower write read tree type qwer tyui op qwert yuiop quiet power tower write read tree type qwer tyui op qwert yuiop quiet power tower write read tree type" },
-      { name: "Chapter 4: Bottom Row Practice", text: "zxcv bnm zxcvb nm clean voice brown van cab box comb exam zxcv bnm zxcvb nm clean voice brown van cab box comb exam zxcv bnm zxcvb nm clean voice brown van cab box comb exam" },
-      { name: "Chapter 5: Shift Key & Capitals", text: "Sarita Typing Sathi India Delhi Keyboard Practice Success Goal Learn Fast Work Hard Sarita Typing Sathi India Delhi Keyboard Practice Success Goal Learn Fast Work Hard" },
-      { name: "Chapter 6: Basic Paragraph Practice", text: "the quick brown fox jumps over the lazy dog multiple times every single day to improve keyboard speed and maintain high typing accuracy without making mistakes on the screen." },
-      { name: "Chapter 7: Medium Paragraph Speed Test", text: "typing fast requires daily practice and focus on proper finger position across all rows of the keyboard. consistency is the ultimate key to achieving professional typing speeds in both Hindi and English." },
-      { name: "Chapter 8: Advanced Technical Paragraph", text: "artificial intelligence and web development are shaping the future of technology and computer education worldwide. developers build interactive platforms like typing sathi to help beginners master essential digital skills." },
-      { name: "Chapter 9: Advanced Punctuation Drills", text: "Always double-check your code; errors are common when typing fast! Did you finish the task? Yes, I did. Practice makes a person perfect, especially when working on complex typing modules daily." },
-      { name: "Chapter 10: Advanced Vocabulary Challenge", text: "Extraordinary accomplishments necessitate persistent dedication, rigorous discipline, and uncompromising focus during extensive practice sessions designed to push your maximum typing speed boundaries." },
-      { name: "Chapter 11: Professional Business Sentences", text: "Dear manager, please review the quarterly financial reports and submit your feedback before Friday afternoon. Ensure all project milestones are properly documented and communicated to the team." },
-      { name: "Chapter 12: Programming & Symbols Master", text: "function calculateSum(a, b) { return a + b; } console.log(calculateSum(5, 10)); // Output is 15. Always test your algorithms thoroughly before deploying code to production servers." },
-      { name: "Chapter 13: Long Paragraph Speed Master", text: "Mastering touch typing is an essential skill in the modern digital era. It dramatically improves productivity, reduces physical fatigue, and allows professionals to communicate ideas seamlessly across global networks without looking down at keys." },
-      { name: "Chapter 14: Ultimate Expert Challenge", text: "In a world driven by continuous innovation, adaptability and continuous learning form the bedrock of enduring professional success. Sarita created this platform to empower every aspiring learner worldwide with robust tools." }
-    ],
-    hi: [
-      { name: "Chapter 1: होम रो बेसिक अभ्यास", text: "क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न क ख ग घ च छ ज झ ट ठ ड ढ त थ द ध न" },
-      { name: "Chapter 2: शब्द अभ्यास लंबी प्रैक्टिस", text: "कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता कमल नयन भारत सरकार शिक्षा साथी टाइपिंग सरिता" },
-      { name: "Chapter 3: सामान्य वाक्य अभ्यास", text: "कंप्यूटर साथी में आपका स्वागत है। नियमित अभ्यास से स्पीड बढ़ती है। कंप्यूटर साथी में आपका स्वागत है। नियमित अभ्यास से स्पीड बढ़ती है।" },
-      { name: "Chapter 4: एडवांस्ड अनुच्छेद अभ्यास", text: "शिक्षा किसी भी देश और समाज के विकास की सबसे महत्वपूर्ण नींव होती है। सरिता द्वारा बनाई गई यह वेबसाइट छात्रों को डिजिटल रूप से सशक्त बनाती है। नियमित अभ्यास से हाथों की गति तेज होती है।" },
-      { name: "Chapter 5: कठिन शब्द और मात्राएँ", text: "विद्यार्थी, वैज्ञानिक, प्रौद्योगिकी, अंतर्राष्ट्रीय, आवश्यकता, स्वावलंबन, प्रासंगिकता, विश्वविद्यालय, अनुसंधान, प्रमाणीकरण, कार्यक्षमता, डिजिटलीकरण" }
-    ]
-  };
+    // Chapter Passages Data
+    const passages = {
+        ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
+        ch2: "qwerty uiop qwert yuiop q w e r t y u i o p quert yuiop qwert yuiop",
+        ch3: "zxcvbnm zxcvb nmcxz vbnm 12345 67890 zxcvbnm 12345 67890 zxcvbnm",
+    };
 
-  let baseText = "";
-  let targetText = "";
-  let timeLeft = 60;
-  let timerInterval = null;
-  let isTimerRunning = false;
+    // Variables
+    let timer = 60;
+    let timeLeft = timer;
+    let timerInterval = null;
+    let isTypingStarted = false;
 
-  function loadChapters() {
-    const langSelect = document.getElementById("langSelect");
-    const lang = langSelect ? langSelect.value : "en";
-    const chapterSelect = document.getElementById("chapterSelect");
-    
-    if (!chapterSelect) return;
-    
-    chapterSelect.innerHTML = "";
+    // Counters
+    let totalKeysTyped = 0;
+    let backspaceCount = 0;
+    let totalErrors = 0;
 
-    lessons[lang].forEach((chap, idx) => {
-      const opt = document.createElement("option");
-      opt.value = idx;
-      opt.innerText = chap.name;
-      chapterSelect.appendChild(opt);
+    // DOM Elements
+    const chapterSelect = document.getElementById('chapter-select');
+    const timerSelect = document.getElementById('timer-select');
+    const timeDisplay = document.getElementById('time');
+    const wpmDisplay = document.getElementById('wpm');
+    const accuracyDisplay = document.getElementById('accuracy');
+    const errorsDisplay = document.getElementById('errors');
+    const backspaceDisplay = document.getElementById('backspace');
+    const totalKeysDisplay = document.getElementById('total-keys');
+
+    const textDisplay = document.getElementById('text-display');
+    const inputArea = document.getElementById('input-area');
+    const lockBackspace = document.getElementById('lock-backspace');
+    const hideHighlight = document.getElementById('hide-highlight');
+
+    // Chapter Change Handler (Handles Paid Locking)
+    function handleChapterChange() {
+        const val = chapterSelect.value;
+        if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_') || val.startsWith('mock_')) {
+            document.getElementById('payModal').style.display = 'flex';
+            chapterSelect.value = 'ch1'; // Revert to Free Chapter
+            resetTest();
+        } else {
+            textDisplay.innerText = passages[val] || passages['ch1'];
+            resetTest();
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('payModal').style.display = 'none';
+    }
+
+    // Toggle Word Highlighting
+    function toggleHighlight() {
+        if (hideHighlight.checked) {
+            textDisplay.classList.add('no-highlight');
+        } else {
+            textDisplay.classList.remove('no-highlight');
+        }
+    }
+
+    // Keydown Tracking
+    inputArea.addEventListener('keydown', (e) => {
+        // Block Backspace if Strict Exam Mode is enabled
+        if (lockBackspace.checked && e.key === 'Backspace') {
+            e.preventDefault();
+            return;
+        }
+
+        if (!isTypingStarted) {
+            startTimer();
+            isTypingStarted = true;
+        }
+
+        if (e.key === 'Backspace') {
+            backspaceCount++;
+            backspaceDisplay.innerText = backspaceCount;
+        } else if (e.key.length === 1) {
+            totalKeysTyped++;
+            totalKeysDisplay.innerText = totalKeysTyped;
+        }
     });
 
-    resetPractice();
-  }
+    // Realtime Calculation
+    inputArea.addEventListener('input', () => {
+        const originalText = textDisplay.innerText;
+        const typedText = inputArea.value;
 
-  function renderText() {
-    const textDisplay = document.getElementById("textDisplay");
-    const typedText = document.getElementById("userInput").value;
-
-    if (typedText.length >= targetText.length - 15) {
-      targetText += " " + baseText;
-    }
-
-    let html = "";
-    for (let i = 0; i < targetText.length; i++) {
-      let charClass = "";
-      if (i < typedText.length) {
-        if (typedText[i] === targetText[i]) {
-          charClass = "correct";
-        } else {
-          charClass = "incorrect";
+        let currentErrors = 0;
+        for (let i = 0; i < typedText.length; i++) {
+            if (typedText[i] !== originalText[i]) {
+                currentErrors++;
+            }
         }
-      } else if (i === typedText.length) {
-        charClass = "current";
-      }
 
-      let char = targetText[i];
-      html += `<span class="${charClass}">${char}</span>`;
+        totalErrors = currentErrors;
+        errorsDisplay.innerText = totalErrors;
+
+        if (typedText.length > 0) {
+            let correctChars = typedText.length - totalErrors;
+            let accuracyVal = Math.round((correctChars / typedText.length) * 100);
+            accuracyDisplay.innerText = (accuracyVal < 0 ? 0 : accuracyVal) + '%';
+        } else {
+            accuracyDisplay.innerText = '100%';
+        }
+
+        let timeElapsed = timer - timeLeft;
+        if (timeElapsed > 0) {
+            let wordsTyped = typedText.trim().split(/\s+/).filter(w => w.length > 0).length;
+            let wpmVal = Math.round((wordsTyped / timeElapsed) * 60);
+            wpmDisplay.innerText = wpmVal;
+        }
+    });
+
+    // Timer Logic
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            } else {
+                clearInterval(timerInterval);
+                inputArea.disabled = true;
+                alert(` Time Up!\n\nFinal WPM: ${wpmDisplay.innerText}\nAccuracy: ${accuracyDisplay.innerText}\nTotal Errors: ${totalErrors}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);
+            }
+        }, 1000);
     }
-    textDisplay.innerHTML = html;
-  }
 
-  function handleTyping() {
-    if (!isTimerRunning) {
-      startTimer();
-    }
-
-    renderText();
-    calculateStats();
-  }
-
-  function startTimer() {
-    isTimerRunning = true;
-    timerInterval = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        updateTimerDisplay();
-        calculateStats();
-      } else {
+    // Reset Logic
+    function resetTest() {
         clearInterval(timerInterval);
-        document.getElementById("userInput").disabled = true;
-        const name = document.getElementById("userName").value.trim() || "Student";
-        alert(`Time Over, ${name}! Aapki Speed: ${document.getElementById("wpmDisplay").innerText} WPM aur Accuracy: ${document.getElementById("accuracyDisplay").innerText} hai.`);
-      }
-    }, 1000);
-  }
+        isTypingStarted = false;
+        
+        timer = parseInt(timerSelect.value) * 60;
+        timeLeft = timer;
+        
+        let mins = Math.floor(timeLeft / 60);
+        let secs = timeLeft % 60;
+        timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
 
-  function updateTimerDisplay() {
-    const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-    const secs = String(timeLeft % 60).padStart(2, '0');
-    document.getElementById("timerDisplay").innerText = `${mins}:${secs}`;
-  }
+        totalKeysTyped = 0;
+        backspaceCount = 0;
+        totalErrors = 0;
 
-  function calculateStats() {
-    const typed = document.getElementById("userInput").value;
-    const totalTimePassed = parseInt(document.getElementById("timeSelect").value) - timeLeft;
+        wpmDisplay.innerText = '0';
+        accuracyDisplay.innerText = '100%';
+        errorsDisplay.innerText = '0';
+        backspaceDisplay.innerText = '0';
+        totalKeysDisplay.innerText = '0';
 
-    if (totalTimePassed > 0) {
-      const wordsTyped = typed.trim().split(/\s+/).length;
-      const wpm = Math.round((wordsTyped / totalTimePassed) * 60);
-      document.getElementById("wpmDisplay").innerText = isNaN(wpm) ? 0 : wpm;
+        inputArea.value = '';
+        inputArea.disabled = false;
+        inputArea.focus();
     }
-
-    let correctChars = 0;
-    for (let i = 0; i < typed.length; i++) {
-      if (typed[i] === targetText[i]) correctChars++;
-    }
-
-    const accuracy = typed.length > 0 ? Math.round((correctChars / typed.length) * 100) : 100;
-    document.getElementById("accuracyDisplay").innerText = `${accuracy}%`;
-  }
-
-  function resetPractice() {
-    clearInterval(timerInterval);
-    isTimerRunning = false;
-    
-    const langSelect = document.getElementById("langSelect");
-    const lang = langSelect ? langSelect.value : "en";
-    const chapterSelect = document.getElementById("chapterSelect");
-    const chapIdx = (chapterSelect && chapterSelect.value) ? chapterSelect.value : 0;
-    
-    baseText = lessons[lang][chapIdx] ? lessons[lang][chapIdx].text : lessons[lang][0].text;
-    targetText = baseText;
-
-    timeLeft = parseInt(document.getElementById("timeSelect").value);
-    document.getElementById("userInput").value = "";
-    document.getElementById("userInput").disabled = false;
-    document.getElementById("wpmDisplay").innerText = "0";
-    document.getElementById("accuracyDisplay").innerText = "100%";
-    
-    updateTimerDisplay();
-    renderText();
-  }
-
-  // Guaranteed Chapter Load on Startup
-  document.addEventListener("DOMContentLoaded", loadChapters);
 </script>
 
 </body>
-</html>
+  </html>
