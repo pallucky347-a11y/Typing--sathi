@@ -177,14 +177,32 @@
     <h1>Typing Sathi</h1>
     <div class="creator-tag">Created by Sarita</div>
 
-    <!-- Chapter Selection (Free + Locked Govt Special) -->
+    <!-- Student Name Input Box -->
+    <div class="form-group">
+        <label for="student-name">👤 Student Name (अपना नाम लिखें):</label>
+        <input type="text" id="student-name" placeholder="Yahan apna naam likhein (e.g. Rahul Sharma)...">
+    </div>
+
+    <!-- Chapter Selection (15 Free Chapters + Locked Govt Special) -->
     <div class="form-group">
         <label for="chapter-select">🎯 Practice Chapters & Govt Exam Modes:</label>
         <select id="chapter-select" onchange="handleChapterChange()">
-            <optgroup label="Free Basic Chapters">
-                <option value="ch1">Chapter 1: Home Row Basic Practice</option>
-                <option value="ch2">Chapter 2: Top Row Words</option>
-                <option value="ch3">Chapter 3: Bottom Row & Numbers</option>
+            <optgroup label="📚 Free Basic Typing Course (15 Chapters)">
+                <option value="ch1">Chapter 1: Home Row Basic (a s d f j k l ;)</option>
+                <option value="ch2">Chapter 2: Home Row Keys Mix (asdf jkl; g h)</option>
+                <option value="ch3">Chapter 3: Home Row Easy Words (fall glad dad flash)</option>
+                <option value="ch4">Chapter 4: Home Row Full Sentences</option>
+                <option value="ch5">Chapter 5: Top Row Keys Practice (q w e r t y u i o p)</option>
+                <option value="ch6">Chapter 6: Top + Home Row Mix Words</option>
+                <option value="ch7">Chapter 7: Top Row Sentence Practice</option>
+                <option value="ch8">Chapter 8: Bottom Row Keys Practice (z x c v b n m)</option>
+                <option value="ch9">Chapter 9: All 3 Rows Mixed Words</option>
+                <option value="ch10">Chapter 10: All Rows Easy Sentences</option>
+                <option value="ch11">Chapter 11: Shift Key & Capital Letters Practice</option>
+                <option value="ch12">Chapter 12: Numbers Keypad Practice (1234567890)</option>
+                <option value="ch13">Chapter 13: Symbols & Punctuation Practice (!@#$%^&*)</option>
+                <option value="ch14">Chapter 14: Short Story & Speed Drill 1</option>
+                <option value="ch15">Chapter 15: Advanced Paragraph & Speed Test</option>
             </optgroup>
             <optgroup label="🏆 Govt Exam Special (Paid / Locked)">
                 <option value="ssc_cgl">🔒 SSC CGL / CHSL Exam Pattern (2000 Depressions)</option>
@@ -244,18 +262,30 @@
         <h3>🔒 Premium Chapter Locked!</h3>
         <p>Yeh passage Govt Exam (SSC / Court / DEO) ki tayari ke liye <b>Special Exam Pattern</b> par design kiya gaya hai.</p>
         <p>Ise unlock karne aur Unlimited Govt Mock Tests paane ke liye Premium Access lein.</p>
-        <button class="btn-pay" onclick="alert('Payment Gateway Soon! Abhi ke liye aap Free Chapters practice karein.')">Unlock Now ₹49</button>
+        <button class="btn-pay" onclick="alert('Payment Gateway Soon! Abhi ke liye aap 15 Free Basic Chapters practice karein.')">Unlock Now ₹49</button>
         <br>
         <button class="btn-close" onclick="closeModal()">Close</button>
     </div>
 </div>
 
 <script>
-    // Chapter Passages Data
+    // 15 Complete Free Basic Passages Data
     const passages = {
         ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
-        ch2: "qwerty uiop qwert yuiop q w e r t y u i o p quert yuiop qwert yuiop",
-        ch3: "zxcvbnm zxcvb nmcxz vbnm 12345 67890 zxcvbnm 12345 67890 zxcvbnm",
+        ch2: "asdfg hjkl; gfdsa ;lkjh asdfg hjkl; gfdsa ;lkjh gfds hjkl asdf gfdsa",
+        ch3: "fall glad dad flash glass salad flask All dads fall glad A flash salad",
+        ch4: "a dad had a flask. a glad lad falls. all glass falls. a flash salad is glad.",
+        ch5: "qwerty uiop qwert yuiop q w e r t y u i o p quert yuiop qwert yuiop",
+        ch6: "type quay row write tree pot pour territory quiet quote require power territory",
+        ch7: "you write quiet poetry. we require power to write. quiet poetry is pretty.",
+        ch8: "zxcvbnm zxcvb nmcxz vbnm z x c v b n m zxcv nmbvc xzxcv bnmxz",
+        ch9: "back cabin man calm examine zinc vex zero mix brave dynamic flexible vocal",
+        ch10: "pack my box with five dozen liquor jugs. brave men examine the dynamic zinc.",
+        ch11: "India is my Country. Sarita Tuition Classes teaches Computer and Mathematics.",
+        ch12: "12345 67890 98765 43210 10293 84756 56473 82910 123 456 7890",
+        ch13: "hello@world.com #123 $450 & 100% test! (typing-sathi) + = {practice};",
+        ch14: "Practice makes a person perfect. Typing regularly every day improves your speed and accuracy. Always keep your back straight while typing on keyboard.",
+        ch15: "Computer typing is an essential skill for modern digital education. Master the home row keys first, then gradually build your speed with consistent daily drills."
     };
 
     // Variables
@@ -272,6 +302,7 @@
     // DOM Elements
     const chapterSelect = document.getElementById('chapter-select');
     const timerSelect = document.getElementById('timer-select');
+    const studentNameInput = document.getElementById('student-name');
     const timeDisplay = document.getElementById('time');
     const wpmDisplay = document.getElementById('wpm');
     const accuracyDisplay = document.getElementById('accuracy');
@@ -284,12 +315,12 @@
     const lockBackspace = document.getElementById('lock-backspace');
     const hideHighlight = document.getElementById('hide-highlight');
 
-    // Chapter Change Handler (Handles Paid Locking)
+    // Chapter Change Handler
     function handleChapterChange() {
         const val = chapterSelect.value;
         if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_') || val.startsWith('mock_')) {
             document.getElementById('payModal').style.display = 'flex';
-            chapterSelect.value = 'ch1'; // Revert to Free Chapter
+            chapterSelect.value = 'ch1';
             resetTest();
         } else {
             textDisplay.innerText = passages[val] || passages['ch1'];
@@ -312,7 +343,6 @@
 
     // Keydown Tracking
     inputArea.addEventListener('keydown', (e) => {
-        // Block Backspace if Strict Exam Mode is enabled
         if (lockBackspace.checked && e.key === 'Backspace') {
             e.preventDefault();
             return;
@@ -374,7 +404,9 @@
             } else {
                 clearInterval(timerInterval);
                 inputArea.disabled = true;
-                alert(` Time Up!\n\nFinal WPM: ${wpmDisplay.innerText}\nAccuracy: ${accuracyDisplay.innerText}\nTotal Errors: ${totalErrors}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);
+                
+                let studentName = studentNameInput.value.trim() || "Student";
+                alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay.innerText} WPM\nAccuracy: ${accuracyDisplay.innerText}\nTotal Errors: ${totalErrors}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);
             }
         }, 1000);
     }
@@ -408,4 +440,4 @@
 </script>
 
 </body>
-  </html>
+</html>
