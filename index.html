@@ -253,6 +253,28 @@ function startPractice() {
   localStorage.setItem('selected_chapter', currentSelectedChapter);
   window.location.href = 'practice.html';
 }
+    function handleRegistration(event) {
+    if (event) event.preventDefault(); // पेज रीलोड होने से रोकेगा
+
+    const studentType = document.getElementById('student-type').value;
+    const passwordInput = document.getElementById('student-password') ? document.getElementById('student-password').value : '';
+
+    if (studentType === 'government') {
+        const SECRET_GOVT_PASSWORD = "GOVT2026"; // आपका पासवर्ड
+        if (passwordInput !== SECRET_GOVT_PASSWORD) {
+            alert("गलत पासवर्ड! कृपया सही पासवर्ड दर्ज करें।");
+            return false;
+        }
+    }
+
+    // रजिस्ट्रेशन कार्ड को छिपाएँ
+    const registrationCard = document.querySelector('.card');
+    if (registrationCard) {
+        registrationCard.style.display = 'none';
+    }
+
+    return false;
+    }
 </script>
 
 </body>
