@@ -79,7 +79,19 @@
         <form action="practice.html">
             <input type="text" class="input-field" placeholder="Student Full Name (पूरा नाम)" required><br>
             <input type="email" class="input-field" placeholder="Email / Mobile Number" required><br>
-            <input type="password" class="input-field" placeholder="Password (पासवर्ड)" required><br>
+             <!-- Course/Student Type Selector -->
+<div class="input-field-group">
+  <label for="student-type">Course Type (कोर्स का प्रकार):</label>
+  <select id="student-type" class="input-field" onchange="togglePasswordRequired()">
+    <option value="normal">Normal Student (निःशुल्क / फ्री)</option>
+    <option value="government">Government Exam Student (पासवर्ड आवश्यक)</option>
+  </select>
+</div>
+
+<!-- Password Field Container -->
+<div id="password-container" style="display: none; margin-top: 10px;">
+  <input type="password" id="student-password" class="input-field" placeholder="Government Access Password (पासवर्ड दर्ज करें)">
+</div>
             <button type="submit" class="btn-submit">Register & Start Practice 🚀</button>
         </form>
     </div>
