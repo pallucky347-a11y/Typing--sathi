@@ -344,7 +344,20 @@
             textDisplay.classList.remove('no-highlight');
         }
     }
+    function togglePasswordRequired() {
+    const studentType = document.getElementById('student-type').value;
+    const passwordContainer = document.getElementById('password-container');
+    const passwordInput = document.getElementById('student-password');
 
+    if (studentType === 'government') {
+        passwordContainer.style.display = 'block';
+        passwordInput.required = true;
+    } else {
+        passwordContainer.style.display = 'none';
+        passwordInput.required = false;
+        passwordInput.value = '';
+    }
+    }
     inputArea.addEventListener('keydown', (e) => {
         if (lockBackspace.checked && e.key === 'Backspace') {
             e.preventDefault();
