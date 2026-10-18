@@ -274,7 +274,39 @@ function startPractice() {
     }
 
     return false;
+    }function togglePasswordRequired() {
+    const studentType = document.getElementById('student-type').value;
+    const passwordContainer = document.getElementById('password-container');
+    const passwordInput = document.getElementById('student-password');
+
+    if (studentType === 'government') {
+        passwordContainer.style.display = 'block';
+        passwordInput.required = true;
+    } else {
+        passwordContainer.style.display = 'none';
+        passwordInput.required = false;
+        passwordInput.value = '';
     }
+}
+
+function handleRegistration(event) {
+    if (event) event.preventDefault();
+
+    const studentType = document.getElementById('student-type').value;
+    const passwordInput = document.getElementById('student-password') ? document.getElementById('student-password').value : '';
+
+    if (studentType === 'government') {
+        const SECRET_GOVT_PASSWORD = "GOVT2026";
+        if (passwordInput !== SECRET_GOVT_PASSWORD) {
+            alert("गलत पासवर्ड! कृपया सही गवर्नमेंट पासवर्ड दर्ज करें।");
+            return false;
+        }
+    }
+
+    // सीधे practice.html पेज पर भेजें
+    window.location.href = 'practice.html';
+    return false;
+}
 </script>
 
 </body>
