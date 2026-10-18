@@ -321,17 +321,17 @@
     const lockBackspace = document.getElementById('lock-backspace');
     const hideHighlight = document.getElementById('hide-highlight');
 
-    function handleChapterChange() {
-        const val = chapterSelect.value;
-        if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_') || val.startsWith('mock_')) {
-            document.getElementById('payModal').style.display = 'flex';
-            chapterSelect.value = 'ch1';
-            resetTest();
-        } else {
-            textDisplay.innerText = passages[val] || passages['ch1'];
-            resetTest();
-        }
+      function handleChapterChange() {
+    const val = chapterSelect.value;
+     if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_')) {
+        document.getElementById('payModal').style.display = 'flex';
+        chapterSelect.value = 'ch1';
+        resetTest();
+    } else {
+        textDisplay.innerText = passages[val] || passages['ch1'];
+        resetTest();
     }
+      }
 
     function closeModal() {
         document.getElementById('payModal').style.display = 'none';
