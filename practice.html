@@ -422,12 +422,10 @@
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
 
-// Safe Timer Trigger: Sirf tabhi start kare jab timer pehle se na chal raha ho
- // Safe Timer Trigger
- // Pehle akshar (1st keystroke) par timer start karne ke liye
+// Pehle akshar par timer start karne ke liye safe check
 if (userTyped.length === 1 && typeof startTimer === 'function') {
     startTimer();
-}
+ }
 
 let actualSecondsPassed = timeElapsed > 0 ? timeElapsed : 1;
 let timeInMinutes = actualSecondsPassed / 60;
