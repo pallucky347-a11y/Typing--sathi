@@ -418,52 +418,31 @@
 
     textDisplay.innerHTML = highlightedHTML;
     errorsDisplay.innerText = errorsCount;
-      // --- Yahan WPM aur Accuracy Live Update ka code jodein ---
-        const wpmDisplay = document.getElementById("wpm");
-        const accuracyDisplay = document.getElementById("accuracy");
-         
- // Live Speed (WPM) Fix - Countdown Timer Corrected
-let actualSecondsPassed = timeElapsed; // Ya agar timeElapsed increment ho raha hai toh actualSecondsPassed = timeElapsed
+ // Live Speed & WPM Fix
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+const grossDisplay = document.getElementById("gross-wpm");
+const netDisplay = document.getElementById("net-wpm");
 
-if (actualSecondsPassed > 0 && userTyped.length > 0) {
-    let timeInMinutes = actualSecondsPassed / 60;
+let actualSecondsPassed = timeElapsed > 0 ? timeElapsed : 1;
+let timeInMinutes = actualSecondsPassed / 60;
 
-    // Gross WPM (Total typed speed)
-    let grossWpm = Math.round((userTyped.length / 5) / timeInMinutes);
+let totalWords = userTyped.length / 5;
+let grossWpm = Math.round(totalWords / timeInMinutes);
 
-    // Net WPM (Sahi speed errors minus karke)
-    let correctChars = userTyped.length - errorsCount;
-    if (correctChars < 0) correctChars = 0;
-    
-    let netWpm = Math.round((correctChars / 5) / timeInMinutes);
+let correctChars = userTyped.length - errorsCount;
+if (correctChars < 0) correctChars = 0;
+let netWpm = Math.round((correctChars / 5) / timeInMinutes);
 
-    // Screen display update
-    const grossDisplay = document.getElementById("gross-wpm");
-    const netDisplay = document.getElementById("net-wpm");
+if (wpmDisplay) wpmDisplay.innerText = netWpm;
+if (grossDisplay) grossDisplay.innerText = grossWpm;
+if (netDisplay) netDisplay.innerText = netWpm;
 
-    if (grossDisplay) grossDisplay.innerText = grossWpm;
-    if (netDisplay) netDisplay.innerText = netWpm;
-
-    if (wpmDisplay) {
-        wpmDisplay.innerText = netWpm;
-    }
-} else {
-    const grossDisplay = document.getElementById("gross-wpm");
-    const netDisplay = document.getElementById("net-wpm");
-
-    if (grossDisplay) grossDisplay.innerText = "0";
-    if (netDisplay) netDisplay.innerText = "0";
-    if (wpmDisplay) wpmDisplay.innerText = "0";
+ // Accuracy Calculation
+if (accuracyDisplay) {
+    let accuracy = userTyped.length > 0 ? Math.max(0, Math.round((correctChars / userTyped.length) * 100)) : 100;
+    accuracyDisplay.innerText = accuracy + "%";
  }
-        // Accuracy Calculation
-        if (userTyped.length > 0) {
-            let correctChars = userTyped.length - errorsCount;
-            let accuracy = Math.max(0, Math.round((correctChars / userTyped.length) * 100));
-            if (accuracyDisplay) accuracyDisplay.innerText = accuracy + "%";
-        } else {
-            if (accuracyDisplay) accuracyDisplay.innerText = "100%";
-        }
-
     // Auto-Repeat Loop: Jab text khatam hone lage toh wapas repeat ho jaye
     if (userTyped.length >= targetText.length - 10) {
         passages[currentChapter] += " " + passages[currentChapter];
