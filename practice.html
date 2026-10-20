@@ -572,6 +572,115 @@
  <!-- आपकी practice.html का बाकी टाइपिंग वाला कोड और स्क्रिप्ट्स -->
 
   <script>
+ // --- Live WPM, Accuracy, Errors & Counters Code ---
+let timer;
+let timeLeft = 60;
+let timeElapsed = 0;
+let isTyping = false;
+
+let totalKeysPressed = 0;
+let backspaceCount = 0;
+
+const targetTextElement = document.getElementById("text-display");
+const inputArea = document.getElementById("input-area");
+
+const timeDisplay = document.getElementById("time");
+const wpmDisplay = document.getElementById("wpm");
+const accuracyDisplay = document.getElementById("accuracy");
+const errorsDisplay = document.getElementById("errors");
+const backspaceDisplay = document.getElementById("backspace");
+const totalKeysDisplay = document.getElementById("total-keys");
+
+if (inputArea) {
+    // Keydown Event: Total Keys aur Backspace track karne ke liye
+    inputArea.addEventListener("keydown", (e) => {
+        if (!isTyping && e.key.length === 1) {
+            startTest();
+        }
+
+        if (e.key.length === 1 || e.key === "Backspace" || e.key === " ") {
+            totalKeysPressed++;
+            if (totalKeysDisplay) totalKeysDisplay.innerText = totalKeysPressed;
+        }
+
+        if (e.key === "Backspace") {
+            backspaceCount++;
+            if (backspaceDisplay) backspaceDisplay.innerText = backspaceCount;
+        }
+    });
+
+    // Input Event: Live WPM, Accuracy aur Errors calculate karne ke liye
+    inputArea.addEventListener("input", () => {
+        const originalText = targetTextElement ? targetTextElement.innerText : "";
+        const typedText = inputArea.value;
+
+        let errors = 0;
+        for (let i = 0; i < typedText.length; i++) {
+            if (typedText[i] !== originalText[i]) {
+                errors++;
+            }
+        }
+        if (errorsDisplay) errorsDisplay.innerText = errors;
+
+        if (typedText.length > 0) {
+            let correctChars = typedText.length - errors;
+            let accuracy = Math.max(0, Math.round((correctChars / typedText.length) * 100));
+            if (accuracyDisplay) accuracyDisplay.innerText = accuracy + "%";
+        } else {
+            if (accuracyDisplay) accuracyDisplay.innerText = "100%";
+        }
+
+        if (timeElapsed > 0) {
+            let wordsTyped = typedText.length / 5;
+            let wpm = Math.round((wordsTyped / timeElapsed) * 60);
+            if (wpmDisplay) wpmDisplay.innerText = wpm > 0 ? wpm : 0;
+        }
+    });
+}
+
+function startTest() {
+    isTyping = true;
+    timer = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            timeElapsed++;
+
+            let mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+            let secs = String(timeLeft % 60).padStart(2, '0');
+            if (timeDisplay) timeDisplay.innerText = `${mins}:${secs}`;
+
+            let typedText = inputArea ? inputArea.value : "";
+            let wordsTyped = typedText.length / 5;
+            let wpm = Math.round((wordsTyped / timeElapsed) * 60);
+            if (wpmDisplay) wpmDisplay.innerText = wpm > 0 ? wpm : 0;
+        } else {
+            clearInterval(timer);
+            if (inputArea) inputArea.disabled = true;
+            isTyping = false;
+        }
+    }, 1000);
+}
+
+function resetTest() {
+    clearInterval(timer);
+    timeLeft = 60;
+    timeElapsed = 0;
+    isTyping = false;
+    totalKeysPressed = 0;
+    backspaceCount = 0;
+
+    if (inputArea) {
+        inputArea.value = "";
+        inputArea.disabled = false;
+    }
+    
+    if (timeDisplay) timeDisplay.innerText = "01:00";
+    if (wpmDisplay) wpmDisplay.innerText = "0";
+    if (accuracyDisplay) accuracyDisplay.innerText = "100%";
+    if (errorsDisplay) errorsDisplay.innerText = "0";
+    if (backspaceDisplay) backspaceDisplay.innerText = "0";
+    if (totalKeysDisplay) totalKeysDisplay.innerText = "0";
+ }
     // --- यहाँ आपकी पुरानी टाइपिंग और पैसेज वाला जावास्क्रिप्ट कोड हो सकता है ---
 
     // ==========================================
