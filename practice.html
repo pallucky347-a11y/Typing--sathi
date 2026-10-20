@@ -423,14 +423,18 @@
         const accuracyDisplay = document.getElementById("accuracy");
          
         // Live Speed (WPM) Fix
+ // Live Speed (WPM) Formula Fix
 if (timeElapsed > 0) {
     let minutesPassed = timeElapsed / 60;
     let wordsTyped = userTyped.length / 5;
     let realWPM = Math.round(wordsTyped / minutesPassed);
-    if (wpmDisplay) wpmDisplay.innerText = realWPM > 0 ? realWPM : 0;
+    
+    if (wpmDisplay) {
+        wpmDisplay.innerText = (realWPM >= 0 && realWPM < 200) ? realWPM : Math.round(wordsTyped);
+    }
 } else if (wpmDisplay) {
     wpmDisplay.innerText = "0";
-}
+     }
         // Accuracy Calculation
         if (userTyped.length > 0) {
             let correctChars = userTyped.length - errorsCount;
