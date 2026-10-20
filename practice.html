@@ -422,23 +422,38 @@
         const wpmDisplay = document.getElementById("wpm");
         const accuracyDisplay = document.getElementById("accuracy");
          
-        // Live Speed (WPM) Fix
- // Live Speed (WPM) Fix
-let timeInMinutes = timeElapsed / 60; // timeElapsed ko seconds me track karein
-if (timeInMinutes > 0 && userTyped.length > 0) {
-    // Correct characters nikalne ke liye
-    let correctChars = userTyped.length - errorsCount; 
+ // Live Speed (WPM) Fix - Countdown Timer Corrected
+let actualSecondsPassed = timeElapsed; // Ya agar timeElapsed increment ho raha hai toh actualSecondsPassed = timeElapsed
+
+if (actualSecondsPassed > 0 && userTyped.length > 0) {
+    let timeInMinutes = actualSecondsPassed / 60;
+
+    // Gross WPM (Total typed speed)
+    let grossWpm = Math.round((userTyped.length / 5) / timeInMinutes);
+
+    // Net WPM (Sahi speed errors minus karke)
+    let correctChars = userTyped.length - errorsCount;
+    if (correctChars < 0) correctChars = 0;
     
-    // Standard formula: (Correct Characters / 5) / Time in Minutes
-    let wpm = Math.round((correctChars / 5) / timeInMinutes); 
-    
+    let netWpm = Math.round((correctChars / 5) / timeInMinutes);
+
+    // Screen display update
+    const grossDisplay = document.getElementById("gross-wpm");
+    const netDisplay = document.getElementById("net-wpm");
+
+    if (grossDisplay) grossDisplay.innerText = grossWpm;
+    if (netDisplay) netDisplay.innerText = netWpm;
+
     if (wpmDisplay) {
-        wpmDisplay.innerText = wpm;
+        wpmDisplay.innerText = netWpm;
     }
 } else {
-    if (wpmDisplay) {
-        wpmDisplay.innerText = "0";
-    }
+    const grossDisplay = document.getElementById("gross-wpm");
+    const netDisplay = document.getElementById("net-wpm");
+
+    if (grossDisplay) grossDisplay.innerText = "0";
+    if (netDisplay) netDisplay.innerText = "0";
+    if (wpmDisplay) wpmDisplay.innerText = "0";
  }
         // Accuracy Calculation
         if (userTyped.length > 0) {
