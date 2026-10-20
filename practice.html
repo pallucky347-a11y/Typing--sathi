@@ -418,31 +418,36 @@
 
     textDisplay.innerHTML = highlightedHTML;
     errorsDisplay.innerText = errorsCount;
- // Live Speed & WPM Fix
+ // Live Speed & Net WPM Fix
 const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
-const grossDisplay = document.getElementById("gross-wpm");
-const netDisplay = document.getElementById("net-wpm");
+
+// Agar timer shuru nahi hua hai aur typing start ho gayi hai toh timer on karein
+if (typeof isTypingStarted !== 'undefined' && !isTypingStarted && userTyped.length > 0) {
+    isTypingStarted = true;
+    if (typeof startTimer === 'function') {
+        startTimer();
+    }
+}
 
 let actualSecondsPassed = timeElapsed > 0 ? timeElapsed : 1;
 let timeInMinutes = actualSecondsPassed / 60;
 
-let totalWords = userTyped.length / 5;
-let grossWpm = Math.round(totalWords / timeInMinutes);
-
+// Net WPM (Errors minus karke actual speed)
 let correctChars = userTyped.length - errorsCount;
 if (correctChars < 0) correctChars = 0;
 let netWpm = Math.round((correctChars / 5) / timeInMinutes);
 
-if (wpmDisplay) wpmDisplay.innerText = netWpm;
-if (grossDisplay) grossDisplay.innerText = grossWpm;
-if (netDisplay) netDisplay.innerText = netWpm;
+// Sirf Net WPM ko wpm display par update karna
+if (wpmDisplay) {
+    wpmDisplay.innerText = netWpm;
+}
 
- // Accuracy Calculation
+// Accuracy Calculation
 if (accuracyDisplay) {
     let accuracy = userTyped.length > 0 ? Math.max(0, Math.round((correctChars / userTyped.length) * 100)) : 100;
     accuracyDisplay.innerText = accuracy + "%";
- }
+}
     // Auto-Repeat Loop: Jab text khatam hone lage toh wapas repeat ho jaye
     if (userTyped.length >= targetText.length - 10) {
         passages[currentChapter] += " " + passages[currentChapter];
