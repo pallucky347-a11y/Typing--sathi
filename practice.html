@@ -421,15 +421,16 @@
       // --- Yahan WPM aur Accuracy Live Update ka code jodein ---
         const wpmDisplay = document.getElementById("wpm");
         const accuracyDisplay = document.getElementById("accuracy");
-        
-        // WPM Calculation
-        let timeInMinutes = (typeof timeElapsed !== 'undefined' ? timeElapsed : 1) / 60;
-        if (timeInMinutes > 0) {
-            let wordsTyped = userTyped.length / 5;
-            let wpm = Math.round(wordsTyped / timeInMinutes);
-            if (wpmDisplay) wpmDisplay.innerText = wpm > 0 ? wpm : 0;
-        }
-
+         
+        // Live Speed (WPM) Fix
+if (timeElapsed > 0) {
+    let minutesPassed = timeElapsed / 60;
+    let wordsTyped = userTyped.length / 5;
+    let realWPM = Math.round(wordsTyped / minutesPassed);
+    if (wpmDisplay) wpmDisplay.innerText = realWPM > 0 ? realWPM : 0;
+} else if (wpmDisplay) {
+    wpmDisplay.innerText = "0";
+}
         // Accuracy Calculation
         if (userTyped.length > 0) {
             let correctChars = userTyped.length - errorsCount;
@@ -449,6 +450,7 @@
         timerInterval = setInterval(() => {
             if (timeLeft > 0) {
                 timeLeft--;
+             timeElapsed++;
                 let mins = Math.floor(timeLeft / 60);
                 let secs = timeLeft % 60;
                 timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
@@ -457,14 +459,14 @@
                 inputArea.disabled = true;
                 
                 let studentName = studentNameInput.value.trim() || "Student";
-                alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay.innerText} WPM\nAccuracy: ${accuracyDisplay.innerText}\nTotal Errors: ${totalErrors}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);
-            }
+             alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay ? wpmDisplay.innerText : 0} WPM\nAccuracy: ${accuracyDisplay ? accuracyDisplay.innerText : '100%'}\nTotal Errors: ${errorsCount}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);    
         }, 1000);
     }
 
     function resetTest() {
         clearInterval(timerInterval);
         isTypingStarted = false;
+        timeElapsed = 0;
         
         timer = parseInt(timerSelect.value) * 60;
         timeLeft = timer;
