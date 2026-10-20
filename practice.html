@@ -418,6 +418,26 @@
 
     textDisplay.innerHTML = highlightedHTML;
     errorsDisplay.innerText = errorsCount;
+      // --- Yahan WPM aur Accuracy Live Update ka code jodein ---
+        const wpmDisplay = document.getElementById("wpm");
+        const accuracyDisplay = document.getElementById("accuracy");
+        
+        // WPM Calculation
+        let timeInMinutes = (typeof timeElapsed !== 'undefined' ? timeElapsed : 1) / 60;
+        if (timeInMinutes > 0) {
+            let wordsTyped = userTyped.length / 5;
+            let wpm = Math.round(wordsTyped / timeInMinutes);
+            if (wpmDisplay) wpmDisplay.innerText = wpm > 0 ? wpm : 0;
+        }
+
+        // Accuracy Calculation
+        if (userTyped.length > 0) {
+            let correctChars = userTyped.length - errorsCount;
+            let accuracy = Math.max(0, Math.round((correctChars / userTyped.length) * 100));
+            if (accuracyDisplay) accuracyDisplay.innerText = accuracy + "%";
+        } else {
+            if (accuracyDisplay) accuracyDisplay.innerText = "100%";
+        }
 
     // Auto-Repeat Loop: Jab text khatam hone lage toh wapas repeat ho jaye
     if (userTyped.length >= targetText.length - 10) {
