@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -6,251 +6,72 @@
     <title>Typing Sathi - Created by Sarita</title>
     <style>
         * { box-sizing: border-box; }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .creator-tag {
-            text-align: center;
-            color: #007bff;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 15px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        select, input, button, textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-        .guide-box {
-            background-color: #eef6ff;
-            border-left: 5px solid #007bff;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .exam-toggle-box {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        .exam-toggle-box label {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-right: 15px;
-            cursor: pointer;
-            font-weight: normal;
-        }
-        #text-display {
-            background: #f8f9fa;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            height: 150px;
-            overflow-y: auto;
-            letter-spacing: 1px;
-            user-select: none;
-        }
-        #text-display.no-highlight {
-            background: #ffffff;
-        }
-        #input-area {
-            font-size: 18px;
-            height: 90px;
-            resize: none;
-            margin-bottom: 15px;
-        }
-        .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            background: #f1f3f5;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            font-size: 14px;
-            gap: 8px;
-        }
-        .stats-item {
-            background: #ffffff;
-            padding: 8px 10px;
-            border-radius: 4px;
-            border: 1px solid #e0e0e0;
-            flex: 1 1 30%;
-            text-align: center;
-        }
-        .btn-restart {
-            background: #007bff;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 6px;
-        }
-        .btn-restart:hover {
-            background: #0056b3;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .modal-content h3 { color: #d9534f; margin-top: 0; }
-        .btn-close {
-            background: #6c757d;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
-        .btn-pay {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            margin-top: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #ddd;
-            font-size: 14px;
-            color: #555;
-        }
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-     .correct-char {
-    color: #28a745 !important;
-    background-color: #d4edda !important;
-    font-weight: bold;
-}
-
-.incorrect-char {
-    color: #721c24 !important;
-    background-color: #f8d7da !important;
-    text-decoration: underline;
-    font-weight: bold;
-}
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 800px; width: 100%; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; margin-bottom: 5px; }
+        .creator-tag { text-align: center; color: #007bff; font-weight: bold; margin-bottom: 20px; font-size: 15px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        select, input, button, textarea { width: 100%; padding: 10px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; }
+        .guide-box { background-color: #eef6ff; border-left: 5px solid #007bff; padding: 12px; margin-bottom: 15px; border-radius: 4px; font-size: 14px; }
+        .exam-toggle-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; }
+        .exam-toggle-box label { display: inline-flex; align-items: center; gap: 5px; margin-right: 15px; cursor: pointer; font-weight: normal; }
+        #text-display { background: #f8f9fa; padding: 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 18px; line-height: 1.6; margin-bottom: 15px; height: 150px; overflow-y: auto; letter-spacing: 1px; user-select: none; }
+        #text-display.no-highlight { background: #ffffff; }
+        #input-area { font-size: 18px; height: 90px; resize: none; margin-bottom: 15px; }
+        .stats-grid { display: flex; flex-wrap: wrap; justify-content: space-between; background: #f1f3f5; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-weight: bold; font-size: 14px; gap: 8px; }
+        .stats-item { background: #ffffff; padding: 8px 10px; border-radius: 4px; border: 1px solid #e0e0e0; flex: 1 1 30%; text-align: center; }
+        .btn-restart { background: #007bff; color: white; font-weight: bold; cursor: pointer; border: none; padding: 12px; font-size: 16px; border-radius: 6px; }
+        .btn-restart:hover { background: #0056b3; }
+        .correct-char { color: #28a745 !important; background-color: #d4edda !important; font-weight: bold; }
+        .incorrect-char { color: #721c24 !important; background-color: #f8d7da !important; text-decoration: underline; font-weight: bold; }
+        footer { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 14px; color: #555; }
+        footer a { color: #007bff; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-
 <div class="container">
  <img src="logo.jpg" alt="Typing Sathi Logo" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 10px auto;">
     <h1>Typing Sathi</h1>
     <div class="creator-tag">Created by Sarita</div>
-
-    <!-- Student Name Input Box -->
     <div class="form-group">
-        <label for="student-name">👤 Student Name (अपना नाम लिखें):</label>
+        <label for="student-name">👤 Student Name:</label>
         <input type="text" id="student-name" placeholder="Yahan apna naam likhein...">
     </div>
-
-    <!-- Chapter Selection -->
     <div class="form-group">
         <label for="chapter-select">🎯 Practice Chapters & Govt Exam Modes:</label>
         <select id="chapter-select" onchange="handleChapterChange()">
             <optgroup label="📚 Free Basic Typing Course (15 Chapters)">
                 <option value="ch1">Chapter 1: Home Row Basic (a s d f j k l ;)</option>
-                <option value="ch2">Chapter 2: Home Row Keys Mix (asdf jkl; g h)</option>
-                <option value="ch3">Chapter 3: Home Row Easy Words (fall glad dad flash)</option>
+                <option value="ch2">Chapter 2: Home Row Keys Mix</option>
+                <option value="ch3">Chapter 3: Home Row Easy Words</option>
                 <option value="ch4">Chapter 4: Home Row Full Sentences</option>
-                <option value="ch5">Chapter 5: Top Row Keys Practice (q w e r t y u i o p)</option>
+                <option value="ch5">Chapter 5: Top Row Keys Practice</option>
                 <option value="ch6">Chapter 6: Top + Home Row Mix Words</option>
                 <option value="ch7">Chapter 7: Top Row Sentence Practice</option>
-                <option value="ch8">Chapter 8: Bottom Row Keys Practice (z x c v b n m)</option>
+                <option value="ch8">Chapter 8: Bottom Row Keys Practice</option>
                 <option value="ch9">Chapter 9: All 3 Rows Mixed Words</option>
                 <option value="ch10">Chapter 10: All Rows Easy Sentences</option>
-                <option value="ch11">Chapter 11: Shift Key & Capital Letters Practice</option>
-                <option value="ch12">Chapter 12: Numbers Keypad Practice (1234567890)</option>
-                <option value="ch13">Chapter 13: Symbols & Punctuation Practice (!@#$%^&*)</option>
+                <option value="ch11">Chapter 11: Shift Key & Capital Letters</option>
+                <option value="ch12">Chapter 12: Numbers Keypad Practice</option>
+                <option value="ch13">Chapter 13: Symbols & Punctuation</option>
                 <option value="ch14">Chapter 14: Short Story & Speed Drill 1</option>
                 <option value="ch15">Chapter 15: Advanced Paragraph & Speed Test</option>
             </optgroup>
             <optgroup label="🏆 Govt Exam Special (Paid / Locked)">
-                <option value="ssc_cgl">🔒 SSC CGL / CHSL Exam Pattern (2000 Depressions)</option>
+                <option value="ssc_cgl">🔒 SSC CGL / CHSL Exam Pattern</option>
                 <option value="court_steno">🔒 High Court & Legal Passages</option>
-                <option value="deo_special">🔒 Bank & DEO Special (Numbers & Symbols)</option>
+                <option value="deo_special">🔒 Bank & DEO Special</option>
                 <option value="mock_test1">🔒 Real Govt Exam Mock Passage 1</option>
             </optgroup>
         </select>
     </div>
-
-    <!-- Finger Placement Guide -->
-    <div class="guide-box">
-        💡 <strong>Finger Placement Guide:</strong> Baayein haath ki ungliyaan <b>A S D F</b> par aur daayein haath ki ungliyaan <b>J K L ;</b> par rakhein. Spacebar thumb se dabayein.
-    </div>
-
-    <!-- Exam Rules Toggle -->
+    <div class="guide-box">💡 <strong>Finger Placement Guide:</strong> Baayein haath ki ungliyaan <b>A S D F</b> par aur daayein haath ki ungliyaan <b>J K L ;</b> par rakhein.</div>
     <div class="exam-toggle-box">
         <strong>⚙️ Real Exam Mode Settings:</strong><br>
-        <label><input type="checkbox" id="lock-backspace"> 🚫 Disable Backspace (Strict Exam Mode)</label>
+        <label><input type="checkbox" id="lock-backspace"> 🚫 Disable Backspace</label>
         <label><input type="checkbox" id="hide-highlight" onchange="toggleHighlight()"> 🙈 Hide Word Highlighting</label>
     </div>
-
-    <!-- Timer Selection -->
     <div class="form-group">
         <label for="timer-select">Samay (Timer):</label>
         <select id="timer-select" onchange="resetTest()">
@@ -261,14 +82,8 @@
             <option value="15">15 Minutes (SSC Standard)</option>
         </select>
     </div>
-
-    <!-- Paragraph Display Area -->
     <div id="text-display">asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;</div>
-
-    <!-- User Input Area -->
     <textarea id="input-area" placeholder="Yahan type karna shuru karein..."></textarea>
-
-    <!-- Stats Counter -->
     <div class="stats-grid">
         <div class="stats-item">Time: <span id="time">01:00</span></div>
         <div class="stats-item">WPM: <span id="wpm">0</span></div>
@@ -277,19 +92,21 @@
         <div class="stats-item" style="color: #f0ad4e;">Backspace: <span id="backspace">0</span></div>
         <div class="stats-item" style="color: #0275d8;">Total Keys: <span id="total-keys">0</span></div>
     </div>
-
     <button class="btn-restart" id="restart-btn" onclick="resetTest()">Reset / Restart</button>
-
-    <!-- Footer Links for AdSense -->
     <footer>
         <p>© 2026 Typing Sathi - Created by Sarita | All Rights Reserved</p>
-        <p>
-            <a href="about.html">About Us</a> | 
-            <a href="contact.html">Contact Us</a> | 
-            <a href="privacy.html">Privacy Policy</a>
-        </p>
+        <p><a href="about.html">About Us</a> | <a href="contact.html">Contact Us</a> | <a href="privacy.html">Privacy Policy</a></p>
     </footer>
 </div>
+
+<div id="payModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:1000;">
+    <div style="background:white; padding:25px; border-radius:10px; max-width:400px; text-align:center;">
+        <h3 style="color:#d9534f;">🔒 Paid Content</h3>
+        <p>Govt Exam Special chapters are paid. Please contact admin.</p>
+        <button onclick="closeModal()" style="background:#6c757d; color:white; padding:8px 15px; border:none; border-radius:4px; margin-top:15px; cursor:pointer;">Close</button>
+    </div>
+</div>
+
 <script>
     const passages = {
         ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
@@ -311,12 +128,11 @@
 
     let timer = 60;
     let timeLeft = timer;
+    let timeElapsed = 0;
     let timerInterval = null;
     let isTypingStarted = false;
-
     let totalKeysTyped = 0;
     let backspaceCount = 0;
-    let totalErrors = 0;
 
     const chapterSelect = document.getElementById('chapter-select');
     const timerSelect = document.getElementById('timer-select');
@@ -327,60 +143,31 @@
     const errorsDisplay = document.getElementById('errors');
     const backspaceDisplay = document.getElementById('backspace');
     const totalKeysDisplay = document.getElementById('total-keys');
-
     const textDisplay = document.getElementById('text-display');
     const inputArea = document.getElementById('input-area');
     const lockBackspace = document.getElementById('lock-backspace');
     const hideHighlight = document.getElementById('hide-highlight');
 
-      function handleChapterChange() {
-    const val = chapterSelect.value;
-     if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_')) {
-        document.getElementById('payModal').style.display = 'flex';
-        chapterSelect.value = 'ch1';
-        resetTest();
-    } else {
-        textDisplay.innerText = passages[val] || passages['ch1'];
-        resetTest();
-    }
-      }
-
-    function closeModal() {
-        document.getElementById('payModal').style.display = 'none';
-    }
-
-    function toggleHighlight() {
-        if (hideHighlight.checked) {
-            textDisplay.classList.add('no-highlight');
+    function handleChapterChange() {
+        const val = chapterSelect.value;
+        if (val.startsWith('ssc_') || val.startsWith('court_') || val.startsWith('deo_') || val.startsWith('mock_')) {
+            document.getElementById('payModal').style.display = 'flex';
+            chapterSelect.value = 'ch1';
+            resetTest();
         } else {
-            textDisplay.classList.remove('no-highlight');
+            textDisplay.innerHTML = passages[val] || passages['ch1'];
+            resetTest();
         }
     }
-    function togglePasswordRequired() {
-    const studentType = document.getElementById('student-type').value;
-    const passwordContainer = document.getElementById('password-container');
-    const passwordInput = document.getElementById('student-password');
+    function closeModal() { document.getElementById('payModal').style.display = 'none'; }
+    function toggleHighlight() {
+        if (hideHighlight.checked) { textDisplay.classList.add('no-highlight'); } 
+        else { textDisplay.classList.remove('no-highlight'); }
+    }
 
-    if (studentType === 'government') {
-        passwordContainer.style.display = 'block';
-        passwordInput.required = true;
-    } else {
-        passwordContainer.style.display = 'none';
-        passwordInput.required = false;
-        passwordInput.value = '';
-    }
-    }
     inputArea.addEventListener('keydown', (e) => {
-        if (lockBackspace.checked && e.key === 'Backspace') {
-            e.preventDefault();
-            return;
-        }
-
-        if (!isTypingStarted) {
-            startTimer();
-            isTypingStarted = true;
-        }
-
+        if (lockBackspace.checked && e.key === 'Backspace') { e.preventDefault(); return; }
+        if (!isTypingStarted && e.key.length === 1) { startTimer(); isTypingStarted = true; }
         if (e.key === 'Backspace') {
             backspaceCount++;
             backspaceDisplay.innerText = backspaceCount;
@@ -390,79 +177,52 @@
         }
     });
 
-     inputArea.addEventListener('input', () => {
-    if (!isTypingStarted) {
-        startTimer();
-        isTypingStarted = true;
-    }
-
-    const currentChapter = chapterSelect.value;
-    let targetText = passages[currentChapter];
-    const userTyped = inputArea.value;
-
-    let highlightedHTML = "";
-    let errorsCount = 0;
-
-    for (let i = 0; i < targetText.length; i++) {
-        if (i < userTyped.length) {
-            if (userTyped[i] === targetText[i]) {
-                highlightedHTML += `<span class="correct-char">${targetText[i]}</span>`;
-            } else {
-                highlightedHTML += `<span class="incorrect-char">${targetText[i]}</span>`;
-                errorsCount++;
-            }
-        } else {
-            highlightedHTML += `<span>${targetText[i]}</span>`;
+    inputArea.addEventListener('input', () => {
+        if (!isTypingStarted) { startTimer(); isTypingStarted = true; }
+        const currentChapter = chapterSelect.value;
+        let targetText = passages[currentChapter] || passages['ch1'];
+        const userTyped = inputArea.value;
+        let highlightedHTML = "";
+        let errorsCount = 0;
+        for (let i = 0; i < targetText.length; i++) {
+            if (i < userTyped.length) {
+                if (userTyped[i] === targetText[i]) { highlightedHTML += `<span class="correct-char">${targetText[i]}</span>`; } 
+                else { highlightedHTML += `<span class="incorrect-char">${targetText[i]}</span>`; errorsCount++; }
+            } else { highlightedHTML += `<span>${targetText[i]}</span>`; }
         }
-    }
+        textDisplay.innerHTML = highlightedHTML;
+        errorsDisplay.innerText = errorsCount;
 
-    textDisplay.innerHTML = highlightedHTML;
-    errorsDisplay.innerText = errorsCount;
- // Live Speed & Net WPM Fix
-const wpmDisplay = document.getElementById("wpm");
-const accuracyDisplay = document.getElementById("accuracy");
+        let actualSecondsPassed = timeElapsed > 0 ? timeElapsed : 1;
+        let timeInMinutes = actualSecondsPassed / 60;
+        let correctChars = userTyped.length - errorsCount;
+        if (correctChars < 0) correctChars = 0;
+        let netWpm = Math.round((correctChars / 5) / timeInMinutes);
+        if (wpmDisplay) { wpmDisplay.innerText = netWpm > 0 ? netWpm : 0; }
+        if (accuracyDisplay) {
+            let accuracy = userTyped.length > 0 ? Math.max(0, Math.round((correctChars / userTyped.length) * 100)) : 100;
+            accuracyDisplay.innerText = accuracy + "%";
+        }
+        if (userTyped.length >= targetText.length - 5) {
+            passages[currentChapter] += " " + targetText;
+        }
+    });
 
-// Pehle akshar par timer start karne ke liye safe check
-if (userTyped.length === 1 && typeof startTimer === 'function') {
-    startTimer();
- }
-
-let actualSecondsPassed = timeElapsed > 0 ? timeElapsed : 1;
-let timeInMinutes = actualSecondsPassed / 60;
-
-// Net WPM Calculation
-let correctChars = userTyped.length - errorsCount;
-if (correctChars < 0) correctChars = 0;
-let netWpm = Math.round((correctChars / 5) / timeInMinutes);
-
-if (wpmDisplay) {
-    wpmDisplay.innerText = netWpm;
-}
-
-// Accuracy Calculation
-if (accuracyDisplay) {
-    let accuracy = userTyped.length > 0 ? Math.max(0, Math.round((correctChars / userTyped.length) * 100)) : 100;
-    accuracyDisplay.innerText = accuracy + "%";
-}
-
-// Auto-Repeat Loop
-if (userTyped.length >= targetText.length - 10) {
-    passages[currentChapter] += " " + passages[currentChapter];
-}
     function startTimer() {
+        clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             if (timeLeft > 0) {
                 timeLeft--;
-             timeElapsed++;
+                timeElapsed++;
                 let mins = Math.floor(timeLeft / 60);
                 let secs = timeLeft % 60;
                 timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
             } else {
                 clearInterval(timerInterval);
                 inputArea.disabled = true;
-                
                 let studentName = studentNameInput.value.trim() || "Student";
-             alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay ? wpmDisplay.innerText : 0} WPM\nAccuracy: ${accuracyDisplay ? accuracyDisplay.innerText : '100%'}\nTotal Errors: ${errorsCount}\nBackspace Used: ${backspaceCount}\nTotal Keys Typed: ${totalKeysTyped}`);    
+                alert(`🎉 Test Completed!\n\nStudent Name: ${studentName}\nFinal Speed: ${wpmDisplay ? wpmDisplay.innerText : 0} WPM\nAccuracy: ${accuracyDisplay ? accuracyDisplay.innerText : '100%'}\nErrors: ${errorsDisplay.innerText}\nBackspace: ${backspaceCount}\nTotal Keys: ${totalKeysTyped}`);
+            }
         }, 1000);
     }
 
@@ -470,226 +230,24 @@ if (userTyped.length >= targetText.length - 10) {
         clearInterval(timerInterval);
         isTypingStarted = false;
         timeElapsed = 0;
-        
         timer = parseInt(timerSelect.value) * 60;
         timeLeft = timer;
-        
         let mins = Math.floor(timeLeft / 60);
         let secs = timeLeft % 60;
         timeDisplay.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
-
         totalKeysTyped = 0;
         backspaceCount = 0;
-        totalErrors = 0;
-
         wpmDisplay.innerText = '0';
         accuracyDisplay.innerText = '100%';
         errorsDisplay.innerText = '0';
         backspaceDisplay.innerText = '0';
         totalKeysDisplay.innerText = '0';
-
         inputArea.value = '';
         inputArea.disabled = false;
         inputArea.focus();
+        let currentVal = chapterSelect.value;
+        if(passages[currentVal]){ textDisplay.innerHTML = passages[currentVal]; }
     }
 </script>
- <!-- Typing Sathi WhatsApp Channel Popup Code -->
-<div id="ts-whatsapp-popup" class="ts-popup-overlay">
-  <div class="ts-popup-card">
-     <div class="ts-popup-card">
-    <!-- Yeh raha pehla step: Close button me onclick function add karna -->
-    <button class="ts-close-btn" onclick="document.querySelector('.ts-popup-overlay').style.display='none';">&times;</button>
-    
-    <!-- Logo & Branding -->
-    <div class="ts-popup-header">
-    <div class="ts-popup-header">
-      <div class="ts-logo-circle">TS</div>
-      <h3>Typing Sathi</h3>
-      <p>Your Ultimate Typing Exam Preparation Hub 🚀</p>
-    </div>
-
-    <!-- Motivational Shayari / Content -->
-    <div class="ts-popup-body">
-      <p class="ts-shayari">
-        "Na thakenge hath kabhi, na rukenge yeh kadam,<br>
-        keyboard ki har ki par likhenge hum apni kalam!<br>
-        Sapno ko sach karne ki thani hai mere sathi,<br>
-        tabhi to har student ki pehchan hai 'Typing Sathi'! 💻🚀"
-      </p>
-      <ul class="ts-features">
-        <li>🎯 Daily Practice Targets & Speed Tips</li>
-        <li>📝 Exam Alerts & Official Rules</li>
-        <li>💻 Useful Shortcuts & Study Material</li>
-      </ul>
-    </div>
-
-    <!-- Join Button with Your Channel Link -->
-    <div class="ts-popup-footer">
-      <a href="https://whatsapp.com/channel/0029Vb9jS8dHVvTRGWmuVw3x" target="_blank" class="ts-join-btn">
-        Join WhatsApp Channel Now 🚀
-      </a>
-    </div>
-  </div>
-</div>
-
-<style>
-.ts-popup-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.ts-popup-card {
-  background: #ffffff;
-  width: 90%;
-  max-width: 420px;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  position: relative;
-  text-align: center;
-  animation: tsScaleUp 0.3s ease-in-out;
-}
-@keyframes tsScaleUp {
- .ts-close-btn {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    background: #f1f1f1;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.ts-close-btn:hover {
-    background: #e0e0e0;
-    color: #000;
-}  
-.ts-logo-circle {
-  width: 60px; height: 60px;
-  background: linear-gradient(135deg, #007bff, #28a745);
-  color: white; font-size: 24px; font-weight: bold;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; margin: 0 auto 10px auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.ts-popup-header h3 { margin: 5px 0 2px 0; color: #222; font-size: 22px; }
-.ts-popup-header p { color: #666; font-size: 13px; margin-bottom: 15px; }
-.ts-shayari {
-  background: #f8f9fa;
-  padding: 12px;
-  border-radius: 8px;
-  font-style: italic;
-  font-size: 13px;
-  color: #555;
- <!-- आपकी practice.html का बाकी टाइपिंग वाला कोड और स्क्रिप्ट्स -->
-
-  <script>
- // --- Live WPM, Accuracy, Errors & Counters Code ---
-let timer;
-let timeLeft = 60;
-let timeElapsed = 0;
-let isTyping = false;
-
-let totalKeysPressed = 0;
-let backspaceCount = 0;
-
- 
-    // --- यहाँ आपकी पुरानी टाइपिंग और पैसेज वाला जावास्क्रिप्ट कोड हो सकता है ---
-
-    // ==========================================
-    // SINGLE DEVICE ACTIVE SESSION CHECK (यह वाला कोड यहाँ जोड़ना है)
-    // ==========================================
-    (function checkSingleDeviceSession() {
-      const isGovtChapter = localStorage.getItem('is_govt_chapter');
-      const activePassword = localStorage.getItem('active_govt_pass');
-      const sessionToken = localStorage.getItem('active_govt_session');
-
-      if (isGovtChapter === 'true' && activePassword && sessionToken) {
-        setInterval(() => {
-          const currentLivePass = localStorage.getItem('active_govt_pass');
-          const currentLiveToken = localStorage.getItem('active_govt_session');
-
-          if (currentLivePass === activePassword && currentLiveToken !== sessionToken) {
-            alert("⚠️ यह पासवर्ड किसी दूसरे डिवाइस पर स्टार्ट हो गया है। आपका सेशन यहाँ समाप्त किया जाता है।");
-            
-            localStorage.removeItem('is_govt_chapter');
-            localStorage.removeItem('active_govt_pass');
-            localStorage.removeItem('active_govt_session');
-            
-            window.location.href = 'index.html';
-          }
-        }, 4000);
-      }
-    })();
- // --- FIXED TIMER AND COUNTER CODE ---
-let isTypingStarted = false;
-let timerInterval = null;
-
-function startTest() {
-    if (isTypingStarted) return;
-    isTypingStarted = true;
-    timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            timeElapsed++;
-            let mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-            let secs = String(timeLeft % 60).padStart(2, '0');
-            if (timeDisplay) timeDisplay.innerText = `${mins}:${secs}`;
-
-            // Live WPM
-            let typedLen = inputArea ? inputArea.value.length : 0;
-            let wpm = Math.round((typedLen / 5) / (timeElapsed / 60));
-            if (wpmDisplay) wpmDisplay.innerText = wpm > 0 ? wpm : '0';
-        } else {
-            clearInterval(timerInterval);
-            if (inputArea) inputArea.disabled = true;
-        }
-    }, 1000);
-}
-
-function resetTest() {
-    clearInterval(timerInterval);
-    timeLeft = parseInt(timerSelect ? timerSelect.value : 60);
-    timeElapsed = 0;
-    isTypingStarted = false;
-    if(inputArea){ inputArea.value = ""; inputArea.disabled = false; }
-    if(timeDisplay) timeDisplay.innerText = "01:00";
-    if(wpmDisplay) wpmDisplay.innerText = "0";
-    if(accuracyDisplay) accuracyDisplay.innerText = "100%";
-    if(errorsDisplay) errorsDisplay.innerText = "0";
-    if(backspaceDisplay) backspaceDisplay.innerText = "0";
-    if(totalKeysDisplay) totalKeysDisplay.innerText = "0";
-    backspaceCount = 0;
-    totalKeysTyped = 0;
-}
-
-// Input par timer start
-if (inputArea) {
-    inputArea.addEventListener('keydown', (e) => {
-        if (!isTypingStarted && e.key.length === 1) startTest();
-        if (e.key === "Backspace") {
-            backspaceCount++;
-            if(backspaceDisplay) backspaceDisplay.innerText = backspaceCount;
-        }
-        if(e.key.length === 1 || e.key === " " || e.key === "Backspace"){
-            totalKeysTyped++;
-            if(totalKeysDisplay) totalKeysDisplay.innerText = totalKeysTyped;
-        }
-    });
- }
-  </script>
 </body>
 </html>
