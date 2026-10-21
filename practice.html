@@ -192,6 +192,11 @@
   </div>
 </div>
 <script>
+    // Popup ko 1.5 sec me dikhao
+setTimeout(function(){
+  var popup = document.getElementById('ts-whatsapp-popup');
+  if(popup){ popup.style.display='flex'; }
+}, 1500);
     const passages = {
         ch1: "asdf jkl; asdf jkl; a s d f j k l ; fjdksla; fjdk sl a; asdf jkl; asdf jkl;",
         ch2: "asdfg hjkl; gfdsa ;lkjh asdfg hjkl; gfdsa ;lkjh gfds hjkl asdf gfdsa",
